@@ -1,0 +1,2 @@
+module GrouponDealHelper
+end

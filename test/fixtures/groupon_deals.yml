@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  type: 
+  endAt: MyString
+  pitchHtml: MyText
+  isNowDeal: false
+
+two:
+  type: 
+  endAt: MyString
+  pitchHtml: MyText
+  isNowDeal: false
