@@ -35,14 +35,13 @@ module GrouponApiParser
 
   def GrouponApiParser.get_deals_by_division(division)
 
-    #client_id = "60e2f457f30d31204d8a60a2f66f80e573110f35"
-
     url = "https://api.groupon.com/v2/deals.json?division_id=" + division + "&client_id=" + @@client_id
     
     parsed_json = parse_url(url)
 
     @deals_hash = parsed_json['deals']
 
+    begin
     @deals_hash.each do |deal|
       groupon_deal = GrouponDeal.new(
         :groupon_type      => deal['type'],
@@ -68,6 +67,9 @@ module GrouponApiParser
         print "."
       end
     end
+    rescue => err
+      raise "Exception: " + err
+    end
     
   end
 
@@ -77,6 +79,19 @@ module GrouponApiParser
     uri = URI.parse(url)
     return JSON.parse(uri.open.read)
 
+  end
+
+  def GrouponApiParser.update_time_file
+    File.open('log/updatetime.log', 'w') do |f|
+      f.puts Time.now.to_s
+    end
+  end
+
+  #reads the time file and returns the time stored
+  def GrouponApiParser.get_time_file
+    File.open('log/updatetime.log', 'r') do |f|
+      return f.gets
+    end
   end
 
   def GrouponApiParser.one_method()
