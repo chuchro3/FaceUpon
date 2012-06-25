@@ -2,11 +2,14 @@
 require 'groupon_api_parser.rb'
 
 namespace :db do
-  task :groupon => :environment do
+  task :groupon, :isTest do |t, args|
+    args.with_defaults(:isTest => false)
+    isTest = args[:isTest]
+    
     puts Time.now
 
     time_since_update = Time.now - Time.parse(GrouponApiParser.get_time_file)
-    if (time_since_update < 60*60*22)
+    if (time_since_update < 60*60*22 && !isTest)
       hours = (time_since_update/3600).to_i
       minutes = (time_since_update/60 - hours * 60).to_i
       seconds = (time_since_update - (minutes * 60 + hours * 3600)).to_i
