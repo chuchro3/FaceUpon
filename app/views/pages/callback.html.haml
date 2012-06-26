@@ -1,0 +1,12 @@
+
+
+.h1
+  Callback
+%br
+= button_to "like", "https://graph.facebook.com/me/faiceupon:buy?groupon=#{@page_url}&access_token=#{session[:access_token]}", :method => :post, :controller => :pages, :action => :facebook_action
+
+%br
+-# @graph_data.each do |obj|
+  = obj['message']
+  %br
+  %br

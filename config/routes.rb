@@ -1,5 +1,11 @@
 FaceUpon::Application.routes.draw do
+  get "pages/callback"
+
   get "pages/home"
+
+  get "pages/facebook_action"
+
+  post "pages/facebook_action"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
