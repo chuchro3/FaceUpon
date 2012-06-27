@@ -1,0 +1,1 @@
+{"klass":"Taps::Push","database_url":"sqlite://db/development.sqlite3","remote_url":"http://heroku:osui59a24am79x@taps19.heroku.com","session_uri":"/sessions/9828781483","stream_state":{},"completed_tables":["add_announcement_title_to_groupon_deals"],"table_filter":null,"local_tables_info":{"add_announcement_title_to_groupon_deals":0,"groupon_deals":3560,"schema_migrations":6}}

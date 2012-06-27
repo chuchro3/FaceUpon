@@ -1,1 +1,3 @@
 = @groupon[:pitchHtml].html_safe
+%br
+= button_to "View on Groupon.com", "http://groupon.com", :controller => "groupon_deal", :action => "view", :id => @groupon[:id]
