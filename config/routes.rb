@@ -6,9 +6,8 @@ FaceUpon::Application.routes.draw do
 
   get "pages/home"
 
-  get "pages/facebook_action"
+  get "groupon_deal/view"
 
-  post "pages/facebook_action"
 
   #get "groupon_deal/show"
 
