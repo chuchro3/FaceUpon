@@ -8,7 +8,7 @@ FaceUpon::Application.routes.draw do
 
   #get "groupon_deal/view"
 
-  match 'view', :to => 'groupon_deal#viewdeal'
+  match 'view/:id', :to => 'groupon_deal#viewdeal'
 
   #get "groupon_deal/show"
 
