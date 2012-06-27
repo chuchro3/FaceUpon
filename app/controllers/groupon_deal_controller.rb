@@ -1,10 +1,7 @@
 class GrouponDealController < ApplicationController
 
-  def new
-    @groupon_deal = GrouponDeal.new
+  def show
+    @groupon = GrouponDeal.find(params[:id])
   end
 
-  def create
-    @groupon_deal = GrouponDeal.new(params[:groupondeal])
-  end
 end

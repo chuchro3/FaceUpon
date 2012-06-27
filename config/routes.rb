@@ -1,4 +1,7 @@
 FaceUpon::Application.routes.draw do
+
+  resources :groupon_deals
+
   get "pages/callback"
 
   get "pages/home"
@@ -6,6 +9,8 @@ FaceUpon::Application.routes.draw do
   get "pages/facebook_action"
 
   post "pages/facebook_action"
+
+  get "groupon_deal/show"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
