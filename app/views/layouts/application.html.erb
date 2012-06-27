@@ -3,84 +3,22 @@
   xmlns:fb="https://www.facebook.com/2008/fbml">
 
 <head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# faiceupon: http://ogp.me/ns/fb/faiceupon#">
-  <meta property="og:type"   content="faiceupon:groupon" />  
-  <meta property="fb:app_id" content="287031438061468" /> 
-  <meta property="og:description"   content="This is a groupon" />
-  <meta property="og:url"    content="<%= @page_url %>" /> 
-  <meta property="og:title"  content="Sample object" /> 
-  <meta property="og:image"  content="https://s-static.ak.fbcdn.net/images/devsite/attachment_blank.png" /> 
+  <%= render 'layouts/metatags' %>
   <title>FaceUpon <%= @title %></title>
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
-  
-  <script type="text/javascript">
-  function postBuy()
-  {
-      FB.api(
-        '/me/og.likes',
-        'post',
-        { object: 'http://freezing-fog-1504.herokuapp.com/' },
-        function(response) {
-           if (!response || response.error) {
-              alert(response.error);
-           } else {
-              alert('Buy was successful! Action ID: ' + response.id);
-           }
-        });
-  }
-  </script>
 </head>
+
 <body>
 
-<div id="fb-root"></div>
-<script>(function(d, s, id) {
-  var js, fjs = d.getElementsByTagName(s)[0];
-  if (d.getElementById(id)) return;
-  js = d.createElement(s); js.id = id;
-  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=287031438061468";
-  fjs.parentNode.insertBefore(js, fjs);
-  }(document, 'script', 'facebook-jssdk'));</script>
+  <%= render 'layouts/facebooklogin' %>
+  <%= render 'layouts/facebookfeed' %>
 
 
-<div id="fb-root"></div>
-<script>(function(d, s, id) {
-  var js, fjs = d.getElementsByTagName(s)[0];
-  if (d.getElementById(id)) return;
-  js = d.createElement(s); js.id = id;
-  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=287031438061468&redirect_uri=#{@page_url}/pages/callback";
-  fjs.parentNode.insertBefore(js, fjs);
-  }(document, 'script', 'facebook-jssdk'));</script>
-
-<div id="fb-root"></div>
-  <script>
-    window.fbAsyncInit = function() {
-      FB.init({
-        appId      : '287031438061468', // App ID
-        status     : true, // check login status
-        cookie     : true, // enable cookies to allow the server to access the session
-        xfbml      : true  // parse XFBML
-      });
-    };
-
-    // Load the SDK Asynchronously
-    (function(d){
-      var js, id = 'facebook-jssdk'; if (d.getElementById(id)) {return;}
-      js = d.createElement('script'); js.id = id; js.async = true;
-      js.src = "//connect.facebook.net/en_US/all.js";
-      d.getElementsByTagName('head')[0].appendChild(js);
-    }(document));
-  </script>
-
-  <h3>Groupon</h3>
-  <br>
-  <form>
-    <input type="button" value="Like" onclick="postBuy()" />
-  </form>
-
-<div class="fb-login-button" data-show-faces="true" data-width="200" data-max-rows="1"></div>
-<div class="fb-activity" data-app-id="287031438061468" data-width="300" data-height="600" data-header="true" data-border-color="#20ee40" data-recommendations="false"></div>
-<%= yield %>
+  <div class="fb-login-button" data-show-faces="true" data-width="200" data-max-rows="1"></div>
+  <div class="fb-activity" data-app-id="287031438061468" data-width="300" data-height="600" data-header="true" data-border-color="#20ee40" data-recommendations="false"></div>
+  <%= yield %>
 
 </body>
 </html>
