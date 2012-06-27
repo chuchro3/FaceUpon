@@ -15,7 +15,7 @@ class PagesController < ApplicationController
 
     if (params[:code])
       
-      #session[:access_token] = session[:oauth].get_access_token(params[:code])
+      session[:access_token] = session[:oauth].get_access_token(params[:code])
       #@api = Koala::Facebook::API.new(session[:access_token]) 
       #@graph_data = @api.get_object("/me/statuses")
       #@api.put_connections("me", "faiceupon:buy", :groupon => @page_url)
