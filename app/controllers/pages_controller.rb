@@ -19,6 +19,7 @@ class PagesController < ApplicationController
       @api = Koala::Facebook::API.new(session[:access_token]) 
       @graph_data = @api.get_object("/me/statuses")
       @api.put_connections("me", "faiceupon:buy", :groupon => @page_url)
+      session[:api] = @api
     else
       session[:oauth] = Koala::Facebook::OAuth.new(APP_ID, APP_SECRET, @page_url)
       @auth_url = session[:oauth].url_for_oauth_code(:permissions=>"read_stream")    
