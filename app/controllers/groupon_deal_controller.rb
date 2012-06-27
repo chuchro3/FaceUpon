@@ -2,6 +2,7 @@ class GrouponDealController < ApplicationController
 
   def show
     @groupon = GrouponDeal.find(params[:id])
+    @page_url = SITE_URL + "/groupon_deal/#{@groupon[:id]}"
   end
 
   def viewdeal
