@@ -2,7 +2,10 @@
   home
 - if (params[:code])
   code exists
+  %br
   = session[:oauth]
+  %br
+  = params[:code]
 - else
   code does not exist
   = link_to "authorize", @auth_url
