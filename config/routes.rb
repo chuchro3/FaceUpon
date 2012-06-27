@@ -1,9 +1,9 @@
 FaceUpon::Application.routes.draw do
 
-  resources :groupon_deals
+  #resources :groupon_deals
   resources :GrouponDeal
-  resources :GrouponDeals
-  resources :groupondeals
+  #resources :GrouponDeals
+  #resources :groupondeals
   resources :groupon_deal
 
   get "pages/callback"
