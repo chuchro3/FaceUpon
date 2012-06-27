@@ -56,7 +56,8 @@ module GrouponApiParser
         :division_lng      => deal['division']['id'],
         :division_name     => deal['division']['id'],
         :announcementTitle => deal['announcementTitle'],
-        :highlightsHtml    => deal['highlightsHtml']
+        :highlightsHtml    => deal['highlightsHtml'],
+        :merchant_name     => deal['merchant']['name']
       )
       groupon_deal.save
       @@count += 1
