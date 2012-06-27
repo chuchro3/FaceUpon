@@ -6,9 +6,9 @@ FaceUpon::Application.routes.draw do
 
   get "pages/home"
 
-  get "groupon_deal/view"
+  #get "groupon_deal/view"
 
-  match 'view', :to => 'groupon_deal#view'
+  match 'view', :to => 'groupon_deal#viewdeal'
 
   #get "groupon_deal/show"
 
