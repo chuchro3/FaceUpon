@@ -17,11 +17,12 @@
   <%= render 'layouts/facebooksend' %>
   <%= render 'layouts/facebookcomment' %>
 
-    <div class="fb-info round">
+    <div class="fb-info round"> 
+      <div class="fb-login-button" data-show-faces="true" data-width="200" data-max-rows="1"></div>    
       <div class="fb-like" data-send="true" data-layout="standard" data-href="<%= @page_url %>" data-width="100" data-show-faces="false"></div>
       <br />
       <div class="fb-activity" data-app-id="287031438061468" data-width="300" data-height="600" data-header="true" data-border-color="#20ee40" data-recommendations="false"></div>
-      <div class="fb-login-button" data-show-faces="true" data-width="200" data-max-rows="1"></div>    
+      
     </div>  
     <%= yield %>
 
