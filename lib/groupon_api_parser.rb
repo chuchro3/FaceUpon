@@ -29,6 +29,7 @@ module GrouponApiParser
     print "Saving "
     @divisions_hash.each do |division|
       get_deals_by_division(division['id'])
+      store_division(division['name'])
     end
 
   end
@@ -52,9 +53,9 @@ module GrouponApiParser
         :vip               => deal['vip'],
         :endAt             => deal['endAt'],
         :division_id       => deal['division']['id'],
-        :division_lat      => deal['division']['id'],
-        :division_lng      => deal['division']['id'],
-        :division_name     => deal['division']['id'],
+        :division_lat      => deal['division']['lat'],
+        :division_lng      => deal['division']['lng'],
+        :division_name     => deal['division']['name'],
         :announcementTitle => deal['announcementTitle'],
         :highlightsHtml    => deal['highlightsHtml'],
         :merchant_name     => deal['merchant']['name']
@@ -72,6 +73,11 @@ module GrouponApiParser
       raise "Exception: " + err
     end
     
+  end
+
+  def GrouponApiParser.store_division(division_name)
+    division = Division.new(:name => division_name)
+    division.save
   end
 
   #parses the url and returns a parsed json

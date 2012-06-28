@@ -11,12 +11,18 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120627213420) do
+ActiveRecord::Schema.define(:version => 20120628212831) do
 
   create_table "add_announcement_title_to_groupon_deals", :force => true do |t|
     t.text     "announcementTitle"
     t.datetime "created_at",        :null => false
     t.datetime "updated_at",        :null => false
+  end
+
+  create_table "divisions", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "groupon_deals", :force => true do |t|

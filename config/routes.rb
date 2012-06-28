@@ -1,12 +1,16 @@
 FaceUpon::Application.routes.draw do
 
+  get "division/show"
+
+  get "findgroupon/show"
+
   resources :groupon_deal
 
   get "pages/callback"
 
   get "pages/home"
 
-
+  match 'search', :to => 'groupon_deal#search'
   match 'view/:id', :to => 'groupon_deal#viewdeal'
 
 
