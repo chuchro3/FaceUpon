@@ -28,8 +28,7 @@ body {
 .fb-login-button {
   float: left;
   padding-bottom: 10px;
-  /*padding-right:  5px;
-  padding-left:   10px;*/
+  padding-left:   10px;
 }
 
 .fb-like {
