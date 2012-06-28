@@ -6,11 +6,9 @@ FaceUpon::Application.routes.draw do
 
   get "pages/home"
 
-  #get "groupon_deal/view"
 
   match 'view/:id', :to => 'groupon_deal#viewdeal'
 
-  #get "groupon_deal/show"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
