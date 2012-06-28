@@ -15,11 +15,14 @@
   <%= render 'layouts/facebooklogin' %>
   <%= render 'layouts/facebookfeed' %>
   <%= render 'layouts/facebooklike' %>
+  <%= render 'layouts/facebookcomment' %>
 
   <div class="fb-like-box" data-href="http://freezing-fog-1504.herokuapp.com/" data-width="292" data-show-faces="true" data-border-color="#20ee40" data-stream="true" data-header="true"></div>
   <div class="fb-login-button" data-show-faces="true" data-width="200" data-max-rows="1"></div>
   <div class="fb-activity" data-app-id="287031438061468" data-width="300" data-height="600" data-header="true" data-border-color="#20ee40" data-recommendations="false"></div>
   <%= yield %>
+
+  <div class="fb-comments" data-href="<%= @page_url %>" data-num-posts="2" data-width="470"></div>
 
 </body>
 </html>
