@@ -4,6 +4,7 @@ gem 'rails', '3.2.6'
 
 gem 'pg'
 gem 'taps'
+gem 'blueprint-rails'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'

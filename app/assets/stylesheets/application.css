@@ -13,32 +13,41 @@
  */
 
 body {
-  background: #99eecc;
+  background-image: url('groupon.jpg');
   color: #0060cd;
 }
 
 .fb-info {
-  width 200px;
+  width 350px;
   float: right;
   background: #ffffff;
+  padding-top: 10px;
+
 }
 
 .fb-login-button {
   float: left;
   padding-bottom: 10px;
   padding-right:  5px;
+  padding-left:   10px;
 }
 
 .fb-like {
-
+  float: right;
 }
 
 .fb-activity {
   padding-left:   10px;
-  padding-bottom: 10px;
+  padding-bottom: 20px;
 }
 
 
 p {
   color: #0050aa;
+}
+
+.round {
+  -moz-border-radius:    10px;
+  -webkit-border-radius: 10px;
+  border-radius:         10px;
 }
