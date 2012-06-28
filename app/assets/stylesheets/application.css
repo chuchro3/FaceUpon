@@ -11,3 +11,34 @@
  *= require_self
  *= require_tree .
  */
+
+body {
+  background: #99eecc;
+  color: #0060cd;
+}
+
+.fb-info {
+  width 200px;
+  float: right;
+  background: #ffffff;
+}
+
+.fb-login-button {
+  float: left;
+  padding-bottom: 10px;
+  padding-right:  5px;
+}
+
+.fb-like {
+
+}
+
+.fb-activity {
+  padding-left:   10px;
+  padding-bottom: 10px;
+}
+
+
+p {
+  color: #0050aa;
+}
