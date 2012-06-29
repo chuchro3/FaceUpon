@@ -18,8 +18,9 @@
   <%= render 'layouts/facebookcomment' %>
 
   <div class="find-groupons">
+    <%= image_tag("faceuponlogo.jpg", :height => 90) %>
     <form name="search" action = "/search" method = "get">
-      City: <input type="text" name="division" /> | 
+      City: <input type="text" name="search" /> | 
       <input type="submit" value="Search" />
     </form>
   </div>    

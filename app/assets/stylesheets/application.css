@@ -15,6 +15,7 @@
 body {
   background-image: url('groupon.jpg');
   color: #0060cd;
+  font-family: Tahoma, Georgia;
 }
 
 .fb-info {
@@ -22,10 +23,11 @@ body {
   float: right;
   background: #ffffff;
   padding-top: 10px;
+  margin-top: 30px;
 
   border-style: solid;
   border-width: 2px;
-  border-color: #20DA81;
+  border-color: #00D061;
 
 }
 
@@ -46,15 +48,77 @@ body {
   padding-bottom: 10px;
 }
 
-.nav {
+.find-groupons {
   width: 600px;
-  float: top;
   text-align: center;
   margin-left:  auto;
   margin-right: auto;
   
 }
 
+.display_groupons {
+  float: left;
+  text-align: center;
+}
+
+.display_merchant_title {
+  text-align: center;
+  font-size: 120%;
+
+}
+
+.display_announcement {
+  font-size: 92%;
+  color: #2090ce;
+}
+
+table.groupon_deal {
+  
+  border-style: solid;
+  border-width: 2px;
+  border-color: #00D061;
+}
+
+tr {
+  height: 80px;
+}
+
+td {
+  border-style: solid;
+  border-width: 1px;
+  border-color: #00D061;
+  padding: 5px;
+
+  background-color: white;
+}
+
+td.groupon_name {
+  width: 350px;
+  padding-left: 15px;
+}
+
+td.groupon_image {
+  width: 120px;
+  text-align: center;
+}
+
+li {
+  
+}
+
+a {
+  color: #0050aa;
+  text-decoration: none;
+}
+
+a:visited {
+  color: #003575;
+}
+
+a:hover {
+  color: #3080ff;
+  text-decoration: underline;
+}
 
 p {
   color: #0050aa;
