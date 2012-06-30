@@ -1,10 +1,10 @@
-%div{:class => "display_groupons round"}
+%div{:class => "display_groupons round container two columns"}
   = will_paginate
   %table{:class => "groupon_deal round", :summary => "Groupons"}
     - @groupon_deal.each do |deal|
       %tr{:class => "round"}
         %td{:class => "groupon_name round"}
-          .display_merchant_title
+          %div{:class => "display_merchant_title"} 
             = link_to deal[:merchant_name], SITE_URL+"/groupon_deal/"+deal[:id].to_s
           %br
           .display_announcement

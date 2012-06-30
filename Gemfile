@@ -8,8 +8,9 @@ gem 'blueprint-rails'
 gem 'will_paginate'
 gem 'progress_bar'
 
-gem 'sunspot_rails'
-gem 'sunspot_solr'
+#gem 'sunspot_rails'
+#gem 'sunspot_solr'
+gem 'acts_as_indexed'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'

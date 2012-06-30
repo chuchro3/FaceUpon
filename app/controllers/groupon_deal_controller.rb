@@ -8,11 +8,14 @@ class GrouponDealController < ApplicationController
   def search
     #@groupon_deal = GrouponDeal.find :all,
      # :conditions => "division_name = '#{params[:search]}'"
-    sunspot_search = GrouponDeal.search {
-      fulltext params[:search]
-      paginate :per_page => 100000
-    }
-    @groupon_deal = sunspot_search.results
+    #sunspot_search = GrouponDeal.search {
+    #  fulltext params[:search]
+    #  paginate :per_page => 100000
+    #}
+    #@groupon_deal = sunspot_search.results
+    @groupon_deal = GrouponDeal.find_with_index('^'+params[:search])
+
+
     @groupon_deal = @groupon_deal.paginate(:page => params[:page], :per_page => 10)
     
   end
