@@ -5,7 +5,10 @@ gem 'rails', '3.2.6'
 gem 'pg'
 gem 'taps'
 gem 'blueprint-rails'
+
 gem 'will_paginate'
+gem 'ajax_pagination'
+
 gem 'progress_bar'
 
 #gem 'sunspot_rails'

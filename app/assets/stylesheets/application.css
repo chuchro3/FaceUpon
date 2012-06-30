@@ -120,17 +120,33 @@ a:hover {
   text-decoration: underline;
 }
 
+
+
 a.home_button {
   margin-left: auto;
   margin-right: auto;
   display: block;
   text-align: center;
   width: 190px;
-  color: #fff;
-  background: #006400;
+  color: #ddffee;
+  background: #30a540;
   font-size: 150%;
   font-weight: bold;
   padding: 20px;
+  
+  border-style: solid;
+  border-width: 1px;
+  border-color: #008000;
+
+}
+
+a.home_button:hover {
+  color: #fff;
+  background: #007210;
+  text-decoration: none;
+
+  border-color: #00D061;
+
 }
 
 p {

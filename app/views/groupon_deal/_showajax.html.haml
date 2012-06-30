@@ -1,0 +1,15 @@
+= ajax_links :section_id => "searchajax" do
+  = will_paginate @results
+%table{:class => "groupon_deal round", :summary => "Groupons"}
+  = ajax_loadzone do   
+    - @groupon_deal.each do |deal|
+      %tr{:class => "round"}
+        %td{:class => "groupon_name round"}
+          %div{:class => "display_merchant_title"} 
+            = link_to deal[:merchant_name], SITE_URL+"/groupon_deal/"+deal[:id].to_s
+          %br
+          .display_announcement
+            = deal[:announcementTitle]
+        %td{:class => "groupon_image round"}
+          = link_to image_tag(deal[:sidebarImageUrl], :width => 95), SITE_URL+"/groupon_deal/"+deal[:id].to_s
+  = #will_paginate @results

@@ -5,16 +5,5 @@ class GrouponDeal < ActiveRecord::Base
   attr_protected
 
   validates_presence_of :groupon_type
-  
-
-
-  #searchable :auto_index => true, :auto_remove => true do
-  #  text :announcementTitle, :pitchHtml, :division_name, :division_id
-
-
-  #  integer :id
-
-  #end
-
 
 end

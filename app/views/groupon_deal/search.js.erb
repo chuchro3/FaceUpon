@@ -1,0 +1,17 @@
+
+$('.pagelink').bind('ajax:complete', function() {
+  
+  $(this).parent().parent().fadeOut(400, function() {
+    
+    $(this).html("<%= escape_javascript(render(:partial => 'searchresults')) %>");
+      
+    $(this).fadeIn(400); 
+     
+  });
+
+
+});
+
+
+
+
