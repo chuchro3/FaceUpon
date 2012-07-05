@@ -1,5 +1,10 @@
 $('.deallink').bind('ajax:complete', function() {
 
+  $('.groupon_name').css('background-color', 'white');
+  $('.groupon_image').css('background-color', 'white');
+  $(this).parent().parent().css('background-color', '#B0FFB5');
+  $(this).parent().parent().next().css('background-color', '#B0FFB5');
+
   $('.display_deal').fadeOut(400, function() {
 
     $(this).html("<%= escape_javascript(render(:partial => 'showdeal')) %>");
