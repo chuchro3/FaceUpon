@@ -8,7 +8,10 @@ namespace :db do
     
     puts Time.now
 
-    time_since_update = Time.now - Time.parse(GrouponApiParser.get_time_file)
+    logged_time = Time.now - 60*60*22
+    logged_time = Time.parse(GrouponApiParser.get_time_file) unless GrouponApiParser.get_time_file.nil?
+    time_since_update = Time.now - logged_time
+    
     if (time_since_update < 60*60*22 && !isTest)
       hours = (time_since_update/3600).to_i
       minutes = (time_since_update/60 - hours * 60).to_i
@@ -16,7 +19,9 @@ namespace :db do
       puts hours.to_s + ":" + minutes.to_s + ":" + seconds.to_s + " since last successful update.\n\n"
     else
 
-      Rake::Task['db:reset'].invoke
+      
+      #Rake::Task['db:reset'].invoke
+      Rake::Task['db:migrate'].invoke
 
       puts "Retrieving Groupon deals.."
     

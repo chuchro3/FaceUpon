@@ -11,9 +11,12 @@ module GrouponApiParser
 
   def GrouponApiParser.get_deals
 
+    old_db_size = GrouponDeal.all.size
+
     get_divisions
 
-    puts "Database contains " + GrouponDeal.all.size.to_s + " deals!"
+    db_size_diff = GrouponDeal.all.size - old_db_size
+    puts "Database contains " + db_size_diff.to_s + " new deals! (" + Groupon.all.size.to_s + " total)"
 
   end
 
@@ -44,6 +47,9 @@ module GrouponApiParser
 
     begin
     @deals_hash.each do |deal|
+      if (isDuplicate?(deal)) then
+          next
+      end
       groupon_deal = GrouponDeal.new(
         :groupon_type      => deal['type'],
         :isNowDeal         => deal['isNowDeal'],
@@ -61,6 +67,7 @@ module GrouponApiParser
         :merchant_name     => deal['merchant']['name']
       )
       groupon_deal.save
+      
       @@count += 1
       #puts ("\"" + deal['highlightsHtml'] + "\" saved (" + @@count.to_s + ")").html_safe
       if @@count % 500 == 0
@@ -70,10 +77,20 @@ module GrouponApiParser
       end
     end
     rescue => err
-      raise "Exception: " + err
+      raise "Exception: " + err.to_s
     end
-    
   end
+
+  def GrouponApiParser.isDuplicate?(deal)
+    groupon_deals = GrouponDeal.all
+    groupon_deals.each do |groupon_deal|
+      if (deal['merchant']['name'] == groupon_deal[:merchant_name])
+        return true
+      end
+    end
+      return false
+  end
+
 
   def GrouponApiParser.store_division(division_name)
     division = Division.new(:name => division_name)

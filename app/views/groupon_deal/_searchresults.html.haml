@@ -1,4 +1,4 @@
-%div{:class => "display_groupons round container two columns"}
+%div{:class => "display_groupons round column"}
   = will_paginate @results
   :javascript
     $(".pagination").find("a").attr("data-remote", true);  
@@ -8,11 +8,11 @@
       %tr{:class => "round"}
         %td{:class => "groupon_name round"}
           %div{:class => "display_merchant_title"} 
-            = link_to deal[:merchant_name], SITE_URL+"/groupon_deal/"+deal[:id].to_s
+            = #link_to deal[:merchant_name], {:action => "search"}, {:remote => true, :id => "deallink"}, {:id => 5}
+            = link_to deal[:merchant_name], deal, :remote => true, :class => "deallink"
           %br
           .display_announcement
             = deal[:announcementTitle]
         %td{:class => "groupon_image round"}
-          = link_to image_tag(deal[:sidebarImageUrl], :width => 95), SITE_URL+"/groupon_deal/"+deal[:id].to_s
+          = link_to image_tag(deal[:sidebarImageUrl], :width => 95), SITE_URL+"/groupon_deal/"+deal[:id].to_s, :remote => true, :class => "deallink"
   = will_paginate @results
-

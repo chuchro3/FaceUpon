@@ -1,0 +1,11 @@
+$('.deallink').bind('ajax:complete', function() {
+
+  $('.display_deal').fadeOut(400, function() {
+
+    $(this).html("<%= escape_javascript(render(:partial => 'showdeal')) %>");
+  
+    $(this).fadeIn(400);
+
+  });
+
+});

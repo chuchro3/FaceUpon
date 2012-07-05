@@ -3,6 +3,11 @@ class GrouponDealController < ApplicationController
   def show
     @groupon = GrouponDeal.find(params[:id])
     @page_url = SITE_URL + "/groupon_deal/#{@groupon[:id]}"
+
+    respond_to do |format|
+      format.html
+      format.js { render :layout => false}
+    end
   end
 
   def search
@@ -10,9 +15,10 @@ class GrouponDealController < ApplicationController
 
     @groupon_deal = @groupon_deal.paginate(:page => params[:page], :per_page => 10)
 
+    
     respond_to do |format|
       format.html
-      format.js
+      format.js { render :layout => false}
     end
   end
 

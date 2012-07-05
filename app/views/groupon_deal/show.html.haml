@@ -1,8 +1,1 @@
-= @groupon[:pitchHtml].html_safe
-%br
-
-= button_to "View on Groupon.com", "/view/#{@groupon[:id]}", :controller => "groupon_deal", :action => "view", :id => @groupon[:id]
-
-.fb-comments{ "data-href" => "#{@page_url}", "data-num-posts" => "2", "data-width" => "470"}
-
-
+= render 'groupon_deal/showdeal'

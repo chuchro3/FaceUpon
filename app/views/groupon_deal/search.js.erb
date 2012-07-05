@@ -1,16 +1,21 @@
-
-$('.pagelink').bind('ajax:complete', function() {
+$(document).ready(function() {
   
-  $(this).parent().parent().fadeOut(400, function() {
+  $('.pagelink').bind('ajax:complete', function() {
+  
+    $(this).parent().parent().fadeOut(400, function() {
     
-    $(this).html("<%= escape_javascript(render(:partial => 'searchresults')) %>");
+      $(this).html("<%= escape_javascript(render(:partial => 'searchresults')) %>");
       
-    $(this).fadeIn(400); 
+      $(this).fadeIn(400);
      
+    });
+
   });
 
-
 });
+
+
+
 
 
 

@@ -20,7 +20,7 @@
 # Learn more: http://github.com/javan/whenever
 #
 
-every 1.hours do
+every 2.hours do
 #every :day, :at => "5:03pm" do
   rake "db:groupon", :output => "log/groupon_deals.log", :environment => "development"
 end
