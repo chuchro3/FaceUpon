@@ -16,7 +16,7 @@ module GrouponApiParser
     get_divisions
 
     db_size_diff = GrouponDeal.all.size - old_db_size
-    puts "Database contains " + db_size_diff.to_s + " new deals! (" + Groupon.all.size.to_s + " total)"
+    puts "Database contains " + db_size_diff.to_s + " new deals! (" + GrouponDeal.all.size.to_s + " total)"
 
   end
 
@@ -32,7 +32,7 @@ module GrouponApiParser
     print "Saving "
     @divisions_hash.each do |division|
       get_deals_by_division(division['id'])
-      store_division(division['name'])
+      #store_division(division['name'])
     end
 
   end
@@ -72,7 +72,7 @@ module GrouponApiParser
       #puts ("\"" + deal['highlightsHtml'] + "\" saved (" + @@count.to_s + ")").html_safe
       if @@count % 500 == 0
         print @@count.to_s
-      elsif @@count % 100 == 0
+      elsif @@count % 2 == 0
         print "."
       end
     end
