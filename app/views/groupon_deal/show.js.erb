@@ -19,6 +19,10 @@ $('.deallink').bind('ajax:complete', function() {
 
     $(this).fadeIn(400);
 
+    $('#display-fb-comments').empty();
+    $("#my-fb-comment").appendTo('#display-fb-comments').fadeIn();
   });
+
+
 
 });

@@ -13,15 +13,20 @@
  */
 
 body {
-  min-width: 900px;
+  min-width: 1260px;
   
   background-image: url('groupon.jpg');
   color: #0060cd;
   font-family: Tahoma, Georgia;
 }
 
+.border_style {
+  border-style: solid;
+  border-width: 2px;
+  border-color: #00D061;
+}
+
 .fb-login-button {
-  float: left;
   padding-bottom: 10px;
   padding-left:   10px;
 }
@@ -47,45 +52,43 @@ body {
 
 .page_container {
   display: inline-block;
-  padding-left: 440px;
-  padding-right: 320px;
+  width: 100%;
+  margin-left:  auto;
+  margin-right: auto;
 }
 
 .column {
   position: relative;
   float: left;
+  padding: 10px;
 }
 
 .display_deal {
-  width: 99%;
-  padding-left: 1%;
   margin-top: 21px;
+  width: 440px;
   
-  border-style: solid;
-  border-width: 2px;
-  border-color: #00D061;
 }
 
 .display_groupons {
   width: 440px;
-  right: 442px;
-  margin-left: -100%;
 
   text-align: center;
 }
 
-.fb-info {
+#fb-info-container {
   width: 320px;
-  margin-right: -330px;
+}
 
+.fb-info {
   background: #ffffff;
   padding-top: 10px;
+  margin-bottom: 15px;
   margin-top: 20px;
+}
 
-  border-style: solid;
-  border-width: 2px;
-  border-color: #00D061;
-
+#display-fb-comments {
+  padding-top: 5px;
+  background-color: white;
 }
 
 .display_merchant_title {
@@ -101,9 +104,6 @@ body {
 
 table.groupon_deal {
   
-  border-style: solid;
-  border-width: 2px;
-  border-color: #00D061;
 }
 
 tr {
@@ -174,6 +174,11 @@ a.home_button:hover {
 
   border-color: #00D061;
 
+}
+
+.pitch {
+  background-color: white;
+  padding: 5px;
 }
 
 p {
