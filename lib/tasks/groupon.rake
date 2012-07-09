@@ -2,7 +2,7 @@
 require 'groupon_api_parser.rb'
 
 namespace :db do
-  task :groupon, :isTest do |t, args|
+  task :groupon, [:isTest] => :environment do |t, args|
     args.with_defaults(:isTest => false)
     isTest = args[:isTest]
     
@@ -21,7 +21,7 @@ namespace :db do
 
       
       #Rake::Task['db:reset'].invoke
-      Rake::Task['db:migrate'].invoke
+      #Rake::Task['db:migrate'].invoke
 
       puts "Retrieving Groupon deals.."
     
