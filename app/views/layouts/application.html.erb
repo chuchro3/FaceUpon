@@ -2,7 +2,7 @@
   xmlns:fb="https://www.facebook.com/2008/fbml">
 
 <head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# faiceupon: http://ogp.me/ns/fb/faiceupon#">
-  <title>FaceUpon <%= @title %></title>
+  <title>FaceUpon <%= @page_url %><%= @title %></title>
   <%= render 'layouts/stylesheets' %>
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
@@ -11,6 +11,7 @@
 
 <body>
 
+  <%= @page_url %>
   <%= render 'layouts/facebooklogin' %>
   <%= render 'layouts/facebookfeed' %>
   <%= render 'layouts/facebooklike' %>

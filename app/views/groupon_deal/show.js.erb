@@ -11,10 +11,9 @@ $('.deallink').bind('ajax:complete', function() {
     $(this).parent().css('background-color', '#B2FFB5');
     $(this).parent().prev().css('background-color', '#B2FFB5');
   }
-
   $('.display_deal').fadeOut(400, function() {
 
-    $(this).html("<%= escape_javascript(render(:partial => 'showdeal')) %>");
+    $(this).html("<%= escape_javascript(render :template => 'groupon_deal/show.html.haml', :layout => 'layouts/application') %>");
   
     $(this).fadeIn(400);
 
