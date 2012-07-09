@@ -72,7 +72,7 @@ module GrouponApiParser
       #puts ("\"" + deal['highlightsHtml'] + "\" saved (" + @@count.to_s + ")").html_safe
       if @@count % 500 == 0
         print @@count.to_s
-      elsif @@count % 2 == 0
+      elsif @@count % 100 == 0
         print "."
       end
     end
