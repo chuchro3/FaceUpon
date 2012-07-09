@@ -13,8 +13,10 @@ $('.deallink').bind('ajax:complete', function() {
   }
   $('.display_deal').fadeOut(400, function() {
 
-    $(this).html("<%= escape_javascript(render :template => 'groupon_deal/show.html.haml', :layout => 'layouts/application') %>");
-  
+    $(this).html("<%= escape_javascript(render :template => 'groupon_deal/show.html.haml') %>");
+
+    FB.XFBML.parse();
+
     $(this).fadeIn(400);
 
   });

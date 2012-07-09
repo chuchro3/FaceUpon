@@ -1,0 +1,40 @@
+Refactor rake task to make database changes in the task, not module
+
+
+
+Fix CSS to work in chrome, may require removing dynamically resizing
+center column feature
+
+
+
+Update deal display
+
+
+
+Define a "want to buy with X people" action
+
+
+
+Keep track of active/inactive groupons
+
+
+
+refresh fb-info (news ticker feed) div periodically
+
+
+
+
+
+
+
+
+
+DONE
+
+
+Get fb comments to work with ajax
+
+
+
+
+
