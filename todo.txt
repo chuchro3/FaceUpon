@@ -30,6 +30,9 @@ default search to display first result
 
 
 
+handle 0 search results
+
+
 
 
 
