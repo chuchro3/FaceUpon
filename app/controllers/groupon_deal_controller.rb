@@ -12,6 +12,8 @@ class GrouponDealController < ApplicationController
   end
 
   def search
+    @title = params[:search]
+
     @groupon_deal = GrouponDeal.find_with_index('^'+params[:search])
 
     @groupon_deal = @groupon_deal.paginate(:page => params[:page], :per_page => 10)
