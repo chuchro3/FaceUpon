@@ -1,0 +1,14 @@
+<script type="text/javascript">
+  window.onload = setupRefresh;
+  function setupRefresh()
+  {
+      setInterval("refreshBlock();",30000);
+  }
+  
+  function refreshBlock()
+  {
+     $('#fb-feed').html("<%= escape_javascript(render 'layouts/facebookfeed_display') %>");
+  
+     FB.XFBML.parse();
+  }
+</script>

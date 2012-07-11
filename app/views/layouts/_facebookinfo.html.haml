@@ -1,8 +1,10 @@
+= render 'layouts/feed_refresh'
 #fb-info-container.column
   %div{:class => "fb-info round border_style"}
     #display-fb-like
       %div{:class => "fb-like", "data-send" => "true", "data-layout" => "standard", "data-href" => "#{@page_url}", "data-width" => "100", "data-show-faces" => "false"}
     %br
-    %div{:class => "fb-activity", "data-app-id" => "287031438061468", "data-width" => "300", "data-height" => "600", "data-header" => "true", "data-border-color" => "#20ee40", "data-recommendations" => "false"}
+    #fb-feed
+      = render 'layouts/facebookfeed_display'
     %div{:class => "fb-login-button", "data-show-faces" => "true", "data-width" => "300", "data-max-rows" => "1"}
   .border_style.round#display-fb-comments
