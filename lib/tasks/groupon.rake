@@ -2,9 +2,10 @@
 require 'groupon_api_parser.rb'
 
 namespace :db do
-  task :groupon, [:isTest] => :environment do |t, args|
-    args.with_defaults(:isTest => false)
+  task :groupon, [:isTest, :updateStatusOnly] => :environment do |t, args|
+    args.with_defaults(:isTest => false, :updateStatusOnly => false)
     isTest = args[:isTest]
+    updateStatusOnly = args[:updateStatusOnly]
     
     puts Time.now
 
@@ -22,21 +23,24 @@ namespace :db do
       
       #Rake::Task['db:reset'].invoke
 
-    
-      tStart_get = Time.now 
-    
-      @deals_hash = GrouponApiParser.get_deals
+      if (!updateStatusOnly) 
+        tStart_get = Time.now 
+      
+        @deals_hash = GrouponApiParser.get_deals
 
-      tDiff_get = Time.now - tStart_get
-      puts "    -> " + tDiff_get.to_s + " s"
-     
+        tDiff_get = Time.now - tStart_get
+        puts "    -> " + tDiff_get.to_s + " s"
 
-      tStart_save = Time.now
 
-      Rake::Task['db:save_deals'].invoke
-    
-      tDiff_save = Time.now - tStart_save
-      puts "    -> " + tDiff_save.to_s + " s"
+        tStart_save = Time.now
+
+        Rake::Task['db:save_deals'].invoke
+      
+        tDiff_save = Time.now - tStart_save
+        puts "    -> " + tDiff_save.to_s + " s"
+      end
+
+      Rake::Task['db:update_status'].invoke
 
       GrouponApiParser.update_time_file
 
@@ -53,7 +57,7 @@ namespace :db do
     @deals_hash.each do |deals|
       deals.each_with_index do |deal, index|
         
-        if index % 200 == 0
+        if index % 400 == 0
           print "."
         end
 
@@ -67,7 +71,9 @@ namespace :db do
           :sidebarImageUrl   => deal['sidebarImageUrl'],
           :status            => deal['status'],
           :vip               => deal['vip'],
-          :endAt             => deal['endAt'],
+          :startAt           => Time.parse(deal['startAt']),
+          :endAt             => Time.parse(deal['endAt']),
+          :active_status     => true,
           :division_id       => deal['division']['id'],
           :division_lat      => deal['division']['lat'],
           :division_lng      => deal['division']['lng'],
@@ -86,5 +92,31 @@ namespace :db do
     db_size_diff = GrouponDeal.all.size - old_db_size
     puts "\nDatabase contains " + db_size_diff.to_s + " new deals! (" + GrouponDeal.all.size.to_s + " total)"
 
+  end
+
+  task :update_status => :environment do
+    
+    print "Updating active statuses "
+    tStart = Time.now
+
+    deals = GrouponDeal.all
+
+    count = 0
+    deals.each_with_index do |deal, index|
+      if (deal[:active_status] && tStart - Time.parse(deal[:endAt]) > 0)
+        deal[:active_status] = false
+        deal.save!
+        count += 1
+      end
+      if (index % 400 == 0)
+        print '.'
+      end
+    end
+
+    puts "Success!"
+    puts count.to_s + " newly expired deals"
+
+    tDiff_active = Time.now - tStart
+    puts "    -> " + tDiff_active.to_s + " s"
   end
 end

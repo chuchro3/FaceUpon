@@ -8,11 +8,14 @@
       %tr{:class => "round"}
         %td{:class => "groupon_name round"}
           %div{:class => "display_merchant_title"} 
-            = #link_to deal[:merchant_name], {:action => "search"}, {:remote => true, :id => "deallink"}, {:id => 5}
-            = link_to deal[:merchant_name], deal, :remote => true, :class => "deallink"
-          %br
-          .display_announcement
+            = link_to deal[:merchant_name], deal, :remote => true, :class => "deallink", :id => ("expired" unless deal[:active_status])
+          - if deal[:active_status]
+            %br
+          - else
+            %p{:id => "expired"}
+              Expired
+          .display_announcement{:id => ("expired" unless deal[:active_status])}
             = deal[:announcementTitle]
         %td{:class => "groupon_image round"}
-          = link_to image_tag(deal[:sidebarImageUrl], :width => 95), deal, :remote => true, :class => "deallink"
+          = link_to image_tag(deal[:sidebarImageUrl], :width => 95), deal, :remote => true, :class => "deallink" 
   = will_paginate @results

@@ -10,15 +10,7 @@ Keep track of active/inactive groupons
 
 
 
-refresh fb-info (news ticker feed) div periodically
-
-
-
 make a real home page
-
-
-
-ajaxify the like button
 
 
 
@@ -47,5 +39,12 @@ center column feature
 
 
 Refactor rake task to make database changes in the task, not module
+
+
+ajaxify the like button
+
+
+refresh fb-info (news ticker feed) div periodically
+
 
 

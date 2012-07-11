@@ -102,6 +102,21 @@ body {
   color: #2090ce;
 }
 
+.display_announcement#expired {
+  font-size: 80%;
+}
+
+#expired {
+  color: #aaaaba;
+  font-style: italic;
+  font-size: 95%;
+}
+
+p#expired {
+  color: #ffaaaa;
+  text-align: center;
+}
+
 table.groupon_deal {
   
 }
