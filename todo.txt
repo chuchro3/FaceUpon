@@ -2,11 +2,6 @@ Refactor rake task to make database changes in the task, not module
 
 
 
-Fix CSS to work in chrome, may require removing dynamically resizing
-center column feature
-
-
-
 Update deal display
 
 
@@ -23,16 +18,33 @@ refresh fb-info (news ticker feed) div periodically
 
 
 
+make a real home page
+
+
+
+ajaxify the like button
+
+
+
+fix background
+
+
+
+default search to display first result
 
 
 
 
 
 
-DONE
+::DONE::
 
 
 Get fb comments to work with ajax
+
+
+Fix CSS to work in chrome, may require removing dynamically resizing
+center column feature
 
 
 

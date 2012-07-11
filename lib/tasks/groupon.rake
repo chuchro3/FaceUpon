@@ -21,20 +21,70 @@ namespace :db do
 
       
       #Rake::Task['db:reset'].invoke
-      #Rake::Task['db:migrate'].invoke
 
-      puts "Retrieving Groupon deals.."
     
-      tStart = Time.now 
+      tStart_get = Time.now 
     
-      GrouponApiParser.get_deals
+      @deals_hash = GrouponApiParser.get_deals
+
+      tDiff_get = Time.now - tStart_get
+      puts "    -> " + tDiff_get.to_s + " s"
+     
+
+      tStart_save = Time.now
+
+      Rake::Task['db:save_deals'].invoke
     
-      tDiff = Time.now - tStart
-      puts "    -> " + tDiff.to_s + " s"
+      tDiff_save = Time.now - tStart_save
+      puts "    -> " + tDiff_save.to_s + " s"
 
       GrouponApiParser.update_time_file
 
       puts "Success!\n\n"
     end
+  end
+  
+
+  task :save_deals => :environment do
+    
+    old_db_size = GrouponDeal.all.size
+    print "Saving "
+    
+    @deals_hash.each do |deals|
+      deals.each_with_index do |deal, index|
+        
+        if index % 200 == 0
+          print "."
+        end
+
+        if (GrouponApiParser.isDuplicate?(deal)) then
+            next
+        end
+        groupon_deal = GrouponDeal.new(
+          :groupon_type      => deal['type'],
+          :isNowDeal         => deal['isNowDeal'],
+          :pitchHtml         => deal['pitchHtml'],
+          :sidebarImageUrl   => deal['sidebarImageUrl'],
+          :status            => deal['status'],
+          :vip               => deal['vip'],
+          :endAt             => deal['endAt'],
+          :division_id       => deal['division']['id'],
+          :division_lat      => deal['division']['lat'],
+          :division_lng      => deal['division']['lng'],
+          :division_name     => deal['division']['name'],
+          :announcementTitle => deal['announcementTitle'],
+          :highlightsHtml    => deal['highlightsHtml'],
+          :merchant_name     => deal['merchant']['name']
+        )
+        groupon_deal.save
+        
+        #puts ("\"" + deal['highlightsHtml'] + "\" saved (" + index.to_s + ")").html_safe
+
+      end
+    end
+
+    db_size_diff = GrouponDeal.all.size - old_db_size
+    puts "\nDatabase contains " + db_size_diff.to_s + " new deals! (" + GrouponDeal.all.size.to_s + " total)"
+
   end
 end

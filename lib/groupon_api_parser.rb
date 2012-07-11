@@ -11,13 +11,12 @@ module GrouponApiParser
 
   def GrouponApiParser.get_deals
 
-    old_db_size = GrouponDeal.all.size
+    print "Retrieving Groupon deals "    
 
-    get_divisions
 
-    db_size_diff = GrouponDeal.all.size - old_db_size
-    puts "Database contains " + db_size_diff.to_s + " new deals! (" + GrouponDeal.all.size.to_s + " total)"
+    deals_hash = get_divisions
 
+    
   end
 
   def GrouponApiParser.get_divisions
@@ -29,12 +28,17 @@ module GrouponApiParser
 
     @divisions_hash = parsed_json['divisions']
 
-    print "Saving "
-    @divisions_hash.each do |division|
-      get_deals_by_division(division['id'])
-      #store_division(division['name'])
+    deals_hash = []
+    @divisions_hash.each_with_index do |division, index|
+      deals_hash << (get_deals_by_division(division['id']))
+      if (index % 10 == 0)
+        print "."
+      end
+        #store_division(division['name'])
     end
-
+    puts "Success!"
+    
+    deals_hash
   end
 
   def GrouponApiParser.get_deals_by_division(division)
@@ -43,42 +47,8 @@ module GrouponApiParser
     
     parsed_json = parse_url(url)
 
-    @deals_hash = parsed_json['deals']
+    deals_hash = parsed_json['deals']
 
-    begin
-    @deals_hash.each do |deal|
-      if (isDuplicate?(deal)) then
-          next
-      end
-      groupon_deal = GrouponDeal.new(
-        :groupon_type      => deal['type'],
-        :isNowDeal         => deal['isNowDeal'],
-        :pitchHtml         => deal['pitchHtml'],
-        :sidebarImageUrl   => deal['sidebarImageUrl'],
-        :status            => deal['status'],
-        :vip               => deal['vip'],
-        :endAt             => deal['endAt'],
-        :division_id       => deal['division']['id'],
-        :division_lat      => deal['division']['lat'],
-        :division_lng      => deal['division']['lng'],
-        :division_name     => deal['division']['name'],
-        :announcementTitle => deal['announcementTitle'],
-        :highlightsHtml    => deal['highlightsHtml'],
-        :merchant_name     => deal['merchant']['name']
-      )
-      groupon_deal.save
-      
-      @@count += 1
-      #puts ("\"" + deal['highlightsHtml'] + "\" saved (" + @@count.to_s + ")").html_safe
-      if @@count % 500 == 0
-        print @@count.to_s
-      elsif @@count % 100 == 0
-        print "."
-      end
-    end
-    rescue => err
-      raise "Exception: " + err.to_s
-    end
   end
 
   def GrouponApiParser.isDuplicate?(deal)
