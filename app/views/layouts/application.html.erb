@@ -5,6 +5,9 @@
   <title>FaiceUpon | <%= @title %></title>
   <%= render 'layouts/stylesheets' %>
   <%= stylesheet_link_tag    "application", :media => "all" %>
+  <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css"/>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>
@@ -20,7 +23,7 @@
     <%= image_tag("faceuponlogo.jpg", :height => 90) %>
     <form name="search" action = "/search" method = "get">
       <input type="text" name="search" /> | 
-      <input type="submit" value="Search" />
+      <input type="submit" value="Search" class='search_button'/>
     </form>
   </div>
 

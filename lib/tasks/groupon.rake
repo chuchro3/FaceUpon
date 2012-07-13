@@ -40,12 +40,14 @@ namespace :db do
         puts "    -> " + tDiff_save.to_s + " s"
       end
 
+    end
+
       Rake::Task['db:update_status'].invoke
 
       GrouponApiParser.update_time_file
 
       puts "Success!\n\n"
-    end
+
   end
   
 
@@ -57,7 +59,7 @@ namespace :db do
     @deals_hash.each do |deals|
       deals.each_with_index do |deal, index|
         
-        if index % 400 == 0
+        if index % 600 == 0
           print "."
         end
 
@@ -97,26 +99,22 @@ namespace :db do
   task :update_status => :environment do
     
     print "Updating active statuses "
-    tStart = Time.now
+    start_time = Time.now
 
-    deals = GrouponDeal.all
+    active_deals = GrouponDeal.where("active_staus = ? ", true)
 
-    count = 0
-    deals.each_with_index do |deal, index|
-      if (deal[:active_status] && tStart - Time.parse(deal[:endAt]) > 0)
-        deal[:active_status] = false
-        deal.save!
-        count += 1
+    deals_that_expired = 0
+    active_deals.each_with_index do |deal, index|
+      if deal.expired?
+        deal.update_attribute :active_status, false
+        deals_that_expired += 1
       end
-      if (index % 400 == 0)
-        print '.'
-      end
+      print '.' if index % 200 == 0
     end
 
     puts "Success!"
-    puts count.to_s + " newly expired deals"
+    puts "#{deals_that_expired} newly expired deals"
 
-    tDiff_active = Time.now - tStart
-    puts "    -> " + tDiff_active.to_s + " s"
+    puts "This rake run took: #{(Time.now - start_time).round} second"
   end
 end

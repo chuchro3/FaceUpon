@@ -14,10 +14,6 @@ make a real home page
 
 
 
-fix background
-
-
-
 default search to display first result
 
 
@@ -29,6 +25,8 @@ handle 0 search results
 
 
 ::DONE::
+
+fix backgroun (ad)
 
 
 Get fb comments to work with ajax

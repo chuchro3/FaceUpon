@@ -14,14 +14,18 @@ class GrouponDealController < ApplicationController
   def search
     @title = params[:search]
 
-    @groupon_deal = GrouponDeal.find_with_index('^'+params[:search])
+    if @title.empty?
+      flash[:error] = 'Invalid search'
+      redirect_to :back
+    else
+      @groupon_deal = GrouponDeal.find_with_index('^'+params[:search])
+      @groupon_deal = @groupon_deal.select {|x| x[:active_status]} | @groupon_deal.reject {|x| x[:active_status]}
+      @groupon_deal = @groupon_deal.paginate(:page => params[:page], :per_page => 10)
 
-    @groupon_deal = @groupon_deal.paginate(:page => params[:page], :per_page => 10)
-
-    
-    respond_to do |format|
-      format.html
-      format.js { render :layout => false}
+      respond_to do |format|
+        format.html
+        format.js { render :layout => false}
+      end
     end
   end
 

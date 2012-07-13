@@ -1,1 +1,7 @@
+- if flash[:error]
+  %div{:id => "alerts"}
+    %ul{:class => "alerts success"}
+      %li{:class => "error round"}
+        %span{:id => 'error_message'}
+          = flash[:error]
 = render 'groupon_deal/searchresults'

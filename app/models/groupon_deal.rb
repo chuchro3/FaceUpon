@@ -6,4 +6,7 @@ class GrouponDeal < ActiveRecord::Base
 
   validates_presence_of :groupon_type
 
+  def expired?
+    Time.now - Time.parse(endAt) > 0
+  end
 end
