@@ -45,10 +45,8 @@ body {
 }
 
 .find-groupons {
-  width: 600px;
+  float: left;
   text-align: center;
-  margin-left:  auto;
-  margin-right: auto;
   
 }
 
@@ -213,13 +211,12 @@ ul.alerts {
   margin: auto;
   list-style-type: none;
   padding: 5px 0 5px 0;
-  width: 50%;
+  width: 20%;
 
 }
 
 li.error {
   background: #ffdcd7;
-  border-color: red;
   padding: 5px;
 
   border-style: solid;
@@ -229,7 +226,8 @@ li.error {
 
 #error_message {
       color: red;
-      background: image-url("http://www.groupon.com/images/groupon/icons/error.gif") no-repeat 9px 11px;
+      background: image-url("http://www.groupon.com/images/groupon/icons/error.gif");
       font-size: 20px;
       padding: 5px 0 5px 20px;
+      text-align: center;
 }
