@@ -1,8 +1,6 @@
 %div{:class => "display_groupons round column"}
   = will_paginate @results
-  :javascript
-    $(".pagination").find("a").attr("data-remote", true);  
-    $(".pagination").find("a").attr("class", "pagelink");  
+
   %table{:class => "groupon_deal round", :summary => "Groupons"}
     - @groupon_deal.each do |deal|
       %tr{:class => "round"}
@@ -19,3 +17,6 @@
         %td{:class => "groupon_image round"}
           = link_to image_tag(deal[:sidebarImageUrl], :width => 95), deal, :remote => true, :class => "deallink" 
   = will_paginate @results
+  :javascript
+    $(".pagination").find("a").attr("data-remote", true);  
+    $(".pagination").find("a").attr("class", "pagelink");  

@@ -3,12 +3,11 @@ $(document).ready(function() {
 
   $('.pagelink').bind('ajax:complete', function() {
   
-    $(this).parent().parent().fadeOut(400, function() {
+    $('.display_groupons').fadeOut(400, function() {
     
-      $(this).parent().html("<%= escape_javascript(render(:partial => 'searchresults')) %>");
+      $('.display_groupons').html("<%= escape_javascript(render(:partial => 'searchresults')) %>");
       
-      $(this).parent().fadeIn(400);
-     
+      $('.display_groupons').fadeIn(400);
     });
 
   });

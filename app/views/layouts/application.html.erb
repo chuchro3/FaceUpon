@@ -19,26 +19,30 @@
   <%= render 'layouts/facebooksend' %>
   <%= render 'layouts/facebookcomment' %>
 
-  <div class="find-groupons">
-    <%= image_tag("faiceupon.png", :height => 90) %>
-    <form name="search" action = "/search" method = "get">
-      <input type="text" name="search" /> | 
-      <input type="submit" value="Search" class='search_button'/>
-    </form>
-  </div>
-
-  <div class="page_container round">
-
-
-    <div class="yield_container">
-      <%= yield %>
+  <div class="container">
+    <div class="find-groupons">
+      <%= image_tag("faiceupon.png", :height => 90) %>
+      <form name="search" action = "/search" method = "get">
+        <input type="text" name="search" /> | 
+        <input type="submit" value="Search" class='search_button'/>
+      </form>
+      <%= render 'layouts/alerts' %>
     </div>
 
-    <div class = "display_deal round column"></div>        
+    <div class="page_container round">
 
-    <%= render 'layouts/facebookinfo' %>
-    
+
+      <div class="yield_container">
+        <%= yield %>
+      </div>
+      <div class = "display_deal column">
+        <div class = "display_deal_left column round "></div>
+        <div class = "display_deal_right column round "></div>
+      </div>
+
+      <%= render 'layouts/facebookinfo' %>
+      
+    </div>
   </div>
-
 </body>
 </html>

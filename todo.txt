@@ -19,7 +19,16 @@ default search to display first result
 
 
 handle 0 search results
+on load - run this: 
+set button to disabled :$('.search_button').attr('disabled', 'disable');
+add a class to search_input
+js function on it's .change IE $('.serach_input).change function() {
+//do something
+if size is great than 1, enable button
+if size is 0 disbale
 
+}
+  
 
 
 

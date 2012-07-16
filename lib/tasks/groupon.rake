@@ -101,7 +101,7 @@ namespace :db do
     print "Updating active statuses "
     start_time = Time.now
 
-    active_deals = GrouponDeal.where("active_staus = ? ", true)
+    active_deals = GrouponDeal.where("active_status = ? ", true)
 
     deals_that_expired = 0
     active_deals.each_with_index do |deal, index|
@@ -115,6 +115,6 @@ namespace :db do
     puts "Success!"
     puts "#{deals_that_expired} newly expired deals"
 
-    puts "This rake run took: #{(Time.now - start_time).round} second"
+    puts "This rake run took: #{(Time.now - start_time).round} seconds"
   end
 end

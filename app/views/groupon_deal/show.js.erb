@@ -11,21 +11,32 @@ $('.deallink').bind('ajax:complete', function() {
     $(this).parent().css('background-color', '#B2FFB5');
     $(this).parent().prev().css('background-color', '#B2FFB5');
   }
-  $('.display_deal').fadeOut(400, function() {
+
+  $('.display_groupons').animate({"left": "-=450px"}, "slow");
+
+  $('.display_deal_left').fadeOut(400, function() {
 
     $(this).html("<%= escape_javascript(render :template => 'groupon_deal/show.html.haml') %>");
 
     FB.XFBML.parse();
 
-    $(this).fadeIn(400);
+    $(this).fadeIn(250);
+    $(this).animate({"left": "-=450px"}, 300);
 
     $('#display-fb-comments').empty();
     $("#my-fb-comment").appendTo('#display-fb-comments');
     $('#display-fb-like').empty();
     $('#my-fb-like').appendTo('#display-fb-like');
 
+   
   });
 
+  $('.display_deal_right').fadeOut(1100, function() {
+
+    $(this).html("<%= escape_javascript(render 'groupon_deal/showdeal_right') %>");
+    $(this).fadeIn(450);
+
+  });
 
 
 });
