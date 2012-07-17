@@ -1,5 +1,7 @@
 FaceUpon::Application.routes.draw do
 
+  resources :posts
+
   get "division/show"
 
   get "findgroupon/show"
