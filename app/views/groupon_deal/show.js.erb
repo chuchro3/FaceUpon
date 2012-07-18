@@ -1,42 +1,79 @@
-$('.deallink').bind('ajax:complete', function() {
+$(document).ready(function() {
 
-  $('.groupon_name').css('background-color', 'white');
-  $('.groupon_image').css('background-color', 'white');
-  
-  if ($(this).parent().parent().is('.groupon_name')) {
-    $(this).parent().parent().css('background-color', '#B2FFB5');
-    $(this).parent().parent().next().css('background-color', '#B2FFB5');
-  }
-  else {
-    $(this).parent().css('background-color', '#B2FFB5');
-    $(this).parent().prev().css('background-color', '#B2FFB5');
-  }
+  $('.deallink').unbind('ajax:complete').bind('ajax:complete', function() {
+    
+    $('.groupon_name').css('background-color', 'white');
+    $('.groupon_image').css('background-color', 'white');
+    
+    if ($(this).parent().parent().is('.groupon_name')) {
+      $(this).parent().parent().css('background-color', '#B2FFB5');
+      $(this).parent().parent().next().css('background-color', '#B2FFB5');
+    }
+    else {
+      $(this).parent().css('background-color', '#B2FFB5');
+      $(this).parent().prev().css('background-color', '#B2FFB5');
+    }
 
-  $('.display_groupons').animate({"left": "-=450px"}, "slow");
+    $('.display_groupons').animate({"left": "-=475px"}, "slow");
 
-  $('.display_deal_left').fadeOut(400, function() {
+    $('.display_deal_left').fadeOut(400, function() {
 
-    $(this).html("<%= escape_javascript(render :template => 'groupon_deal/show.html.haml') %>");
+      $(this).html("<%= escape_javascript(render :template => 'groupon_deal/show.html.haml') %>");
 
-    FB.XFBML.parse();
+      FB.XFBML.parse();
 
-    $(this).fadeIn(250);
-    $(this).animate({"left": "-=460px"}, 300);
+      $(this).fadeIn(250);
+      $(this).animate({"left": "-=475px"}, 300);
 
-    $('#display-fb-comments').empty();
-    $("#my-fb-comment").appendTo('#display-fb-comments');
-    $('#display-fb-like').empty();
-    $('#my-fb-like').appendTo('#display-fb-like');
+      $('#display-fb-comments').empty();
+      $("#my-fb-comment").appendTo('#display-fb-comments');
+      $('#display-fb-like').empty();
+      $('#my-fb-like').appendTo('#display-fb-like');
 
-   
+      jQuery('<div/>', {
+        id: 'jquery_arrow',
+        class: 'box_style round border_style',
+        text: 'Back to Search Results'
+      }).appendTo('.page_container');
+
+      $('#jquery_arrow').bind('mouseenter', function() {
+
+        $(this).css('background-color', '#cceedd');
+
+      });
+
+      $('#jquery_arrow').bind('mouseleave', function() {
+
+        $(this).css('background-color', '#ffffff');
+
+      });
+      
+
+      $('#jquery_arrow').bind('click', function() {
+
+        $(this).remove();
+
+        $('.display_deal_left').fadeOut();
+        $('.display_deal_left').animate({"left": "+=475px"}, "slow");
+        $('.display_deal_right').fadeOut();
+
+        $('.display_groupons').animate({"left": "+=475px"}, "slow");
+        
+
+      });
+      
+    });
+
+    $('.display_deal_right').fadeOut(1100, function() {
+
+      $(this).html("<%= escape_javascript(render 'groupon_deal/showdeal_right') %>");
+      $(this).fadeIn(450);
+
+
+
+    });
+
+
   });
-
-  $('.display_deal_right').fadeOut(1100, function() {
-
-    $(this).html("<%= escape_javascript(render 'groupon_deal/showdeal_right') %>");
-    $(this).fadeIn(450);
-
-  });
-
 
 });

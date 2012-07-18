@@ -7,7 +7,6 @@ gem 'taps'
 gem 'blueprint-rails'
 
 gem 'will_paginate'
-gem 'ajax_pagination'
 
 gem 'progress_bar'
 

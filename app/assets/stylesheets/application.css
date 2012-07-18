@@ -67,10 +67,12 @@ body {
   float: left;
   padding: 10px;
 }
+
 .display_deal {
-  width: 315px;
+  width: 300px;
   margin-top: 6px;
 }
+
 .display_deal_left {
   width: 455px;
   float: left;
@@ -80,6 +82,7 @@ body {
 .display_deal_right {
   position: absolute;
   width: 315px;
+  left: -5px;
 }
 
 .display_groupons {
@@ -333,4 +336,15 @@ li.error {
       font-size: 20px;
       padding: 5px 0 5px 0px;
       text-align: center;
+}
+
+#jquery_arrow {
+  font-size: 95%;
+  height: 20px;
+  margin-top: 0px;
+  width: 160px;
+  position: absolute;
+  top: 125px;
+  left: 100px;
+
 }

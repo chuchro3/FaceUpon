@@ -1,8 +1,8 @@
 $(document).ready(function() {
 
 
-  $('.pagelink').bind('ajax:complete', function() {
-  
+  $('.pagelink').bind('ajax:complete', function(e) {
+    e.preventDefault();
     $('.display_groupons').fadeOut(400, function() {
     
       $('.display_groupons').html("<%= escape_javascript(render(:partial => 'searchresults')) %>");
