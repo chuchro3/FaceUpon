@@ -1,2 +1,16 @@
+#deal_links.border_style.box_style.round
+  #deal_link_holder
+    = link_to "View", "/view/#{@groupon[:id]}", :controller => "groupon_deal", :action => "view", :id => @groupon[:id], :class => "view_button round"
+    = link_to "Buy", "/view/#{@groupon[:id]}", :controller => "groupon_deal", :action => "view", :id => @groupon[:id], :class => "buy_button round"
+  #deal_link_info
+    On Groupon.com
 #highlights.border_style.box_style.round
+  .title_fade
+    Summary
   = @groupon.highlightsHtml.html_safe
+#fineprint.border_style.box_style.round
+  .title_fade
+    The Fine Print
+  %p
+    = @groupon.finePrint.html_safe
+

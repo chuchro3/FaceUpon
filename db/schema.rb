@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120711184407) do
+ActiveRecord::Schema.define(:version => 20120717151950) do
 
   create_table "add_announcement_title_to_groupon_deals", :force => true do |t|
     t.text     "announcementTitle"
@@ -37,13 +37,21 @@ ActiveRecord::Schema.define(:version => 20120711184407) do
     t.string   "division_id"
     t.string   "vip"
     t.string   "status"
-    t.datetime "created_at",        :null => false
-    t.datetime "updated_at",        :null => false
+    t.datetime "created_at",             :null => false
+    t.datetime "updated_at",             :null => false
     t.text     "announcementTitle"
     t.text     "highlightsHtml"
     t.text     "merchant_name"
     t.time     "startAt"
     t.boolean  "active_status"
+    t.boolean  "isSoldOut"
+    t.string   "buyUrl"
+    t.string   "dealUrl"
+    t.string   "websiteUrl"
+    t.text     "title"
+    t.text     "shortAnnouncementTitle"
+    t.text     "options"
+    t.text     "finePrint"
   end
 
 end

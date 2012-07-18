@@ -66,25 +66,33 @@ namespace :db do
         if (GrouponApiParser.isDuplicate?(deal)) then
             next
         end
-        groupon_deal = GrouponDeal.new(
-          :groupon_type      => deal['type'],
-          :isNowDeal         => deal['isNowDeal'],
-          :pitchHtml         => deal['pitchHtml'],
-          :sidebarImageUrl   => deal['sidebarImageUrl'],
-          :status            => deal['status'],
-          :vip               => deal['vip'],
-          :startAt           => Time.parse(deal['startAt']),
-          :endAt             => Time.parse(deal['endAt']),
-          :active_status     => true,
-          :division_id       => deal['division']['id'],
-          :division_lat      => deal['division']['lat'],
-          :division_lng      => deal['division']['lng'],
-          :division_name     => deal['division']['name'],
-          :announcementTitle => deal['announcementTitle'],
-          :highlightsHtml    => deal['highlightsHtml'],
-          :merchant_name     => deal['merchant']['name']
-        )
-        groupon_deal.save
+        groupon_deal = GrouponDeal.create(
+          :groupon_type           => deal['type'],
+          :isNowDeal              => deal['isNowDeal'],
+          :pitchHtml              => deal['pitchHtml'],
+          :sidebarImageUrl        => deal['sidebarImageUrl'],
+          :status                 => deal['status'],
+          :vip                    => deal['vip'],
+          :startAt                => Time.parse(deal['startAt']),
+          :endAt                  => Time.parse(deal['endAt']),
+          :active_status          => true,
+          :division_id            => deal['division']['id'],
+          :division_lat           => deal['division']['lat'],
+          :division_lng           => deal['division']['lng'],
+          :division_name          => deal['division']['name'],
+          :announcementTitle      => deal['announcementTitle'],
+          :highlightsHtml         => deal['highlightsHtml'],
+          :merchant_name          => deal['merchant']['name'],
+
+          :isSoldOut              => deal['isSoldOut'],
+          :buyUrl                 => deal['buyUrl'],
+          :dealUrl                => deal['dealUrl'],
+          :websiteUrl             => deal['websiteUrl'],
+          :title                  => deal['title'],
+          :shortAnnouncementTitle => deal['shortAnnouncementTitle'],
+          :options                => deal['options'],
+          :finePrint              => deal['finePrint']
+        ) unless deal['startAt'].nil?
         
         #puts ("\"" + deal['highlightsHtml'] + "\" saved (" + index.to_s + ")").html_safe
 
@@ -115,6 +123,6 @@ namespace :db do
     puts "Success!"
     puts "#{deals_that_expired} newly expired deals"
 
-    puts "This rake run took: #{(Time.now - start_time).round} seconds"
+    puts "    -> #{(Time.now - start_time).round} seconds"
   end
 end

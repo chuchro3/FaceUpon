@@ -1,10 +1,14 @@
 = @deallink
-#merchant_name.border_style.box_style.round
-  = @groupon.merchant_name
+#deal_header.border_style.box_style.round
+  #merchant_info
+    #merchant_name.round
+      = @groupon.merchant_name
+    #merchant_description.round
+      = @groupon.title
+  #dealimage
+    = image_tag @groupon.sidebarImageUrl, :width => 150
 #pitch.border_style.box_style.round
   = @groupon.pitchHtml.html_safe
-%br
-= button_to "View on Groupon.com", "/view/#{@groupon[:id]}", :controller => "groupon_deal", :action => "view", :id => @groupon[:id]
 .fb-comments-container#my-fb-comment
   .fb-comments{ "data-href" => "#{@page_url}", "data-num-posts" => "5", "data-width" => "315"}
 .fb-like-container#my-fb-like

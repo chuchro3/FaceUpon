@@ -68,18 +68,18 @@ body {
   padding: 10px;
 }
 .display_deal {
-  width: 440px;
+  width: 315px;
   margin-top: 6px;
 }
 .display_deal_left {
-  width: 440px;
+  width: 455px;
   float: left;
   
 }
 
 .display_deal_right {
   position: absolute;
-  width: 320px;
+  width: 315px;
 }
 
 .display_groupons {
@@ -177,37 +177,63 @@ a:hover {
 
 
 
-a.home_button {
-  margin-left: auto;
-  margin-right: auto;
+a.view_button {
   display: block;
+  float: left;
   text-align: center;
-  width: 190px;
+  width: 100px;
   color: #ddffee;
   background: #30a540;
-  font-size: 150%;
+  font-size: 125%;
   font-weight: bold;
-  padding: 20px;
+  padding: 4px;
   
-  border-style: solid;
-  border-width: 1px;
-  border-color: #008000;
+  border-style: outset;
+  border-width: 3px;
+  border-color: #009000;
 
 }
 
-a.home_button:hover {
+a.view_button:hover {
   color: #fff;
   background: #007210;
   text-decoration: none;
 
-  border-color: #00D061;
+  border-color: #00a040;
+
+}
+
+a.buy_button {
+  float: right;
+  margin-left: 20px;
+  display: block;
+  text-align: center;
+  width: 100px;
+  color: #ddffee;
+  background: #30a540;
+  font-size: 125%;
+  font-weight: bold;
+  padding: 4px;
+  
+  border-style: outset;
+  border-width: 3px;
+  border-color: #009000;
+
+}
+
+a.buy_button:hover {
+  color: #fff;
+  background: #007210;
+  text-decoration: none;
+
+  border-color: #00a040;
 
 }
 
 .box_style {
   background-color: white;
   padding: 5px;
-  margin: 5px;
+  margin: 5px 5px 9px 5px;
 }
 
 #pitch {
@@ -218,8 +244,58 @@ a.home_button:hover {
 
 }
 
+#fineprint {
+
+}
+
+#merchant_info {
+  float: left;
+  width: 275px;
+
+}
+
 #merchant_name {
-  font-size: 118%;
+  background-color: #a1fcc3;
+  color: #103070;
+  font-size: 120%;
+  margin-bottom: 3px;
+  text-align: center;  
+}
+
+#merchant_description {
+  color: #3060a0;
+  font-size: 90%;
+  padding: 4px;
+}
+
+#dealimage {
+  float: right; 
+}
+
+.title_fade {
+  color: #a0b0cc;
+  font-size: 110%;
+  text-align: center;
+}
+
+#deal_header {
+  display: inline-block;
+  width: 430px;
+}
+
+#deal_links {
+
+}
+
+#deal_link_holder {
+  display: inline-block;
+  margin-bottom: 10px;
+  margin-left: 20px;
+}
+
+#deal_link_info {
+  color: #008040;
+  font-size: 125%;
   text-align: center;
 }
 
