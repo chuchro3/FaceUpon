@@ -1,13 +1,12 @@
-Update deal display
+
 
 
 
 Define a "want to buy with X people" action
 
 
-
-Keep track of active/inactive groupons
-
+fix buy button
+  - there is a buy url for every option
 
 
 make a real home page
@@ -34,6 +33,13 @@ if size is 0 disbale
 
 
 ::DONE::
+
+
+Update deal display
+
+
+Keep track of active/inactive groupons
+
 
 fix backgroun (ad)
 
