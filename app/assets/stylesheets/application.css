@@ -55,6 +55,10 @@ body {
   
 }
 
+.home_container {
+  width: 650px;
+}
+
 .page_container {
   display: inline-block;
   width: 100%;

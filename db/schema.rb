@@ -11,12 +11,30 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120717151950) do
+ActiveRecord::Schema.define(:version => 20120720161242) do
 
   create_table "add_announcement_title_to_groupon_deals", :force => true do |t|
     t.text     "announcementTitle"
     t.datetime "created_at",        :null => false
     t.datetime "updated_at",        :null => false
+  end
+
+  create_table "deal_options", :force => true do |t|
+    t.integer  "groupon_deal_id"
+    t.integer  "soldQuantity"
+    t.boolean  "isSoldOut"
+    t.string   "value_formattedAmount"
+    t.string   "soldQuantityMessage"
+    t.text     "title"
+    t.time     "expiresAt"
+    t.string   "buyUrl"
+    t.string   "price_formattedAmount"
+    t.string   "discount_formattedAmount"
+    t.integer  "discountPercent"
+    t.text     "details_description"
+    t.integer  "maximumPurchaseQuantity"
+    t.datetime "created_at",               :null => false
+    t.datetime "updated_at",               :null => false
   end
 
   create_table "divisions", :force => true do |t|
@@ -27,7 +45,6 @@ ActiveRecord::Schema.define(:version => 20120717151950) do
 
   create_table "groupon_deals", :force => true do |t|
     t.string   "groupon_type"
-    t.string   "endAt"
     t.text     "pitchHtml"
     t.boolean  "isNowDeal"
     t.string   "sidebarImageUrl"
@@ -43,6 +60,7 @@ ActiveRecord::Schema.define(:version => 20120717151950) do
     t.text     "highlightsHtml"
     t.text     "merchant_name"
     t.time     "startAt"
+    t.time     "endAt"
     t.boolean  "active_status"
     t.boolean  "isSoldOut"
     t.string   "buyUrl"

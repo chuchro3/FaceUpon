@@ -1,16 +1,16 @@
-.h1
-%a{:class => "home_button round", :href => ""}
-  home
--#.fb-like{"data-href" => "#{@page_url}", "data-send" => "true", "data-width" => "450", "data-show-faces" => "false"
-- if (params[:code])
-  code exists
+.home_container.column
+  .h1
+  %a{:class => "home_button round", :href => ""}
+    home
+  - if (params[:code])
+    code exists
+    %br
+    = session[:oauth]
+    %br
+    = params[:code]
+  - else
+    %p
+      code does not exist
+    = link_to "authorize", @auth_url
   %br
-  = session[:oauth]
-  %br
-  = params[:code]
-- else
-  %p
-    code does not exist
-  = link_to "authorize", @auth_url
-%br
 

@@ -13,10 +13,6 @@ make a real home page
 
 
 
-default search to display first result
-
-
-
 handle 0 search results
 on load - run this: 
 set button to disabled :$('.search_button').attr('disabled', 'disable');

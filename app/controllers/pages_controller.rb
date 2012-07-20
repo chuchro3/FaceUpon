@@ -1,6 +1,5 @@
 class PagesController < ApplicationController
 
-
   def callback
     @title = "Callback"
     @page_url = SITE_URL + "/pages/callback" 
@@ -12,7 +11,7 @@ class PagesController < ApplicationController
   def home
     @title = "home"
     @page_url = SITE_URL + "/"
-    @groupon = GrouponDeal.find(1)
+    @groupon = GrouponDeal.find(2)
 
     if (params[:code])
       
@@ -23,7 +22,7 @@ class PagesController < ApplicationController
       session[:api] = @api
     else
       session[:oauth] = Koala::Facebook::OAuth.new(APP_ID, APP_SECRET, @page_url)
-      @auth_url = session[:oauth].url_for_oauth_code(:permissions=>"read_stream")    
+      @auth_url = session[:oauth].url_for_oauth_code(:permissions=>"user_about_me, user_likes, friends_likes, publish_actions, publish_stream, share_item")    
     end
 
   end

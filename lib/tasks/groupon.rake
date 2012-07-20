@@ -38,13 +38,15 @@ namespace :db do
       
         tDiff_save = Time.now - tStart_save
         puts "    -> " + tDiff_save.to_s + " s"
+
+        GrouponApiParser.update_time_file
       end
 
     end
 
       Rake::Task['db:update_status'].invoke
 
-      GrouponApiParser.update_time_file
+
 
       puts "Success!\n\n"
 
@@ -66,15 +68,15 @@ namespace :db do
         if (GrouponApiParser.isDuplicate?(deal)) then
             next
         end
-        groupon_deal = GrouponDeal.create(
+        groupon = GrouponDeal.create(
           :groupon_type           => deal['type'],
           :isNowDeal              => deal['isNowDeal'],
           :pitchHtml              => deal['pitchHtml'],
           :sidebarImageUrl        => deal['sidebarImageUrl'],
           :status                 => deal['status'],
           :vip                    => deal['vip'],
-          :startAt                => Time.parse(deal['startAt']),
-          :endAt                  => Time.parse(deal['endAt']),
+          :startAt                => deal['startAt'].blank? ? nil : Time.parse(deal['startAt']),
+          :endAt                  => deal['endAt'].blank? ? nil : Time.parse(deal['endAt']),
           :active_status          => true,
           :division_id            => deal['division']['id'],
           :division_lat           => deal['division']['lat'],
@@ -85,15 +87,29 @@ namespace :db do
           :merchant_name          => deal['merchant']['name'],
 
           :isSoldOut              => deal['isSoldOut'],
-          :buyUrl                 => deal['buyUrl'],
           :dealUrl                => deal['dealUrl'],
           :websiteUrl             => deal['websiteUrl'],
           :title                  => deal['title'],
           :shortAnnouncementTitle => deal['shortAnnouncementTitle'],
-          :options                => deal['options'],
           :finePrint              => deal['finePrint']
-        ) unless deal['startAt'].nil?
-        
+        )
+
+        deal['options'].each do |option_hash|
+          groupon.DealOptions << DealOption.create(
+            :buyUrl                   => option_hash['buyUrl'],
+            :details_description      => option_hash['details'].first['description'],
+            :discountPercent          => option_hash['discountPercent'],
+            :discount_formattedAmount => option_hash['discount']['formattedAmount'],
+            :expiresAt                => option_hash['expiresAt'],
+            :isSoldOut                => option_hash['isSoldOut'],
+            :maximumPurchaseQuantity  => option_hash['maximmumPurchaseQuantity'],
+            :price_formattedAmount    => option_hash['price']['formattedAmount'],
+            :soldQuantity             => option_hash['soldQuantity'],
+            :soldQuantityMessage      => option_hash['soldQuantityMessage'],
+            :title                    => option_hash['title'], 
+            :value_formattedAmount    => option_hash['value']['formattedAmount']
+          )
+        end
         #puts ("\"" + deal['highlightsHtml'] + "\" saved (" + index.to_s + ")").html_safe
 
       end

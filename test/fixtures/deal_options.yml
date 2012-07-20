@@ -1,0 +1,29 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  soldQuantity: 1
+  isSoldOut: false
+  value_formattedAmount: MyString
+  soldQuantityMessage: MyString
+  title: MyText
+  expiresAt: 2012-07-20 11:12:42
+  buyUrl: MyString
+  price_formattedAmount: MyString
+  discount_formattedAmount: MyString
+  discountPercent: 1
+  details_description: MyText
+  maximumPurchaseQuantity: 1
+
+two:
+  soldQuantity: 1
+  isSoldOut: false
+  value_formattedAmount: MyString
+  soldQuantityMessage: MyString
+  title: MyText
+  expiresAt: 2012-07-20 11:12:42
+  buyUrl: MyString
+  price_formattedAmount: MyString
+  discount_formattedAmount: MyString
+  discountPercent: 1
+  details_description: MyText
+  maximumPurchaseQuantity: 1
