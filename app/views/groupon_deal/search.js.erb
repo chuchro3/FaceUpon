@@ -5,7 +5,7 @@ $(document).ready(function() {
   
     $('.display_groupons').fadeOut(400, function() {
     
-      $('.display_groupons').html("<%= escape_javascript(render(:partial => 'searchresults')) %>".force_encoding('UTF-8'));
+      $('.display_groupons').html("<%= escape_javascript(render(:partial => 'searchresults')) %>");
       
       $('.display_groupons').fadeIn(400);
     });

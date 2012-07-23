@@ -1,0 +1,3 @@
+- will paginate - bold current page instead of italics
+
+- when some one comments, it should show up on the news ticker
