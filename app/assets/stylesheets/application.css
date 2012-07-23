@@ -85,8 +85,24 @@ body {
 
 .display_deal_right {
   position: absolute;
+  margin-top: 10px;
   width: 315px;
   left: -5px;
+}
+
+.static {
+  float: left;
+}
+
+.display_deal_left.static {
+  padding-top: 20px;
+}
+
+.display_deal_right.static {
+  left: 2px;
+  position: relative;
+  margin-top: 20px;
+  padding: 0px;
 }
 
 .display_groupons {
@@ -218,6 +234,7 @@ a.buy_button {
   width: 100px;
   color: #ddffee;
   background: #30a540;
+  position: relative;
   font-size: 125%;
   font-weight: bold;
   padding: 4px;
@@ -351,4 +368,12 @@ li.error {
   top: 125px;
   left: 100px;
 
+}
+
+#deal_static_left {
+  width: 430px;
+}
+
+#deal_static_right {
+  width: 275px;
 }

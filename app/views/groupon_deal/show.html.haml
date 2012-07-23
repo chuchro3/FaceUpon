@@ -1,3 +1,6 @@
 -#= @page_url
 -#= params[:action]
-= render 'groupon_deal/showdeal_left'
+- if params[:static_page]
+  = render 'groupon_deal/showdeal_static'
+- else
+  = render 'groupon_deal/showdeal_left'

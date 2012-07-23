@@ -1,0 +1,11 @@
+.display_deal_left.static
+  = render 'groupon_deal/showdeal_left'
+.display_deal_right.static
+  = render 'groupon_deal/showdeal_right'
+:javascript
+  $(document).ready(function() {
+    $('.display_deal').remove();
+    $('#display-fb-comments').empty();
+    $("#my-fb-comment").appendTo('#display-fb-comments');
+  });
+
