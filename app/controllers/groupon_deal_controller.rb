@@ -7,7 +7,8 @@ class GrouponDealController < ApplicationController
     else
       @groupon = GrouponDeal.find(params[:id])
       @title = @groupon[:merchant_name]
-      @page_url = SITE_URL + "/search?search=#{@groupon.merchant_name}"
+      #@page_url = SITE_URL + "/search?search=#{@groupon.merchant_name}"
+      @page_url = SITE_URL + "/groupon_deal/#{params[:id]}"
 
       respond_to do |format|
         format.html
