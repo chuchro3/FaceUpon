@@ -5,8 +5,11 @@
 :javascript
   $(document).ready(function() {
     $('.display_deal').remove();
+
     $('#display-fb-comments').empty();
+    $('#display-fb-comments').addClass('border_style').css('background-color', 'white');
     $("#my-fb-comment").appendTo('#display-fb-comments');
+    
     $('#display-fb-like').empty();
     $('#my-fb-like').appendTo('#display-fb-like');
   });

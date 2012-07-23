@@ -17,26 +17,13 @@
 //
 $(document).ready(function() {
 
-  /*$('#alerts').bind('mouseenter', function() {
+  $('#alerts').bind('mouseenter', function() {
     
     $(this).fadeOut(1500);
 
-  });*/
- $('#alerts').fadeOut(2500);
-
-
-  $('#jquery_arrow').bind('mouseenter', function() {
-
-    $(this).css('background-color', '#ccff00');
-
-
   });
 
-  $('#jquery_arrow').bind('mouseexit', function() {
-
-    $(this).css('background-color', '#ffffff');
 
 
-  });
 
 });
