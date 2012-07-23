@@ -3,6 +3,7 @@
 
 <head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# faiceupon: http://ogp.me/ns/fb/faiceupon#">
   <title>FaiceUpon | <%= @title %></title>
+  <%= render 'layouts/metatags' %>
   <%= render 'layouts/stylesheets' %>
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css"/>
@@ -37,7 +38,7 @@
       </div>
       <div class = "display_deal column">
         <div class = "display_deal_left column round "></div>
-        <div class = "display_deal_right column round "></div>
+        <div class = "display_deal_right round "></div>
       </div>
 
       <%= render 'layouts/facebookinfo' %>
