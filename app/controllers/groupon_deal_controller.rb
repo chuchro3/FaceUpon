@@ -33,7 +33,7 @@ class GrouponDealController < ApplicationController
     @groupon = GrouponDeal.find(params[:id])    
     @page_url = SITE_URL + "/groupon_deal/" + params[:id]
     if (!session.nil?) 
-      Thread.new { session[:api].put_connections("me", "faiceupon:view", :groupon => @page_url) }
+      @viewed_action = Thread.new { session[:api].put_connections("me", "faiceupon:view", :groupon => @page_url) }
     end
     #redirect_to @groupon.dealUrl
   end
