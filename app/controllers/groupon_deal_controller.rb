@@ -1,13 +1,18 @@
 class GrouponDealController < ApplicationController
 
   def show
-    @groupon = GrouponDeal.find(params[:id])
-    @title = @groupon[:merchant_name]
-    @page_url = SITE_URL + "/search?search=#{@groupon.merchant_name}"
 
-    respond_to do |format|
-      format.html
-      format.js { render :layout => false}
+    if (params[:action] == "view")
+      viewdeal
+    else
+      @groupon = GrouponDeal.find(params[:id])
+      @title = @groupon[:merchant_name]
+      @page_url = SITE_URL + "/search?search=#{@groupon.merchant_name}"
+
+      respond_to do |format|
+        format.html
+        format.js { render :layout => false}
+      end
     end
   end
 
@@ -31,7 +36,7 @@ class GrouponDealController < ApplicationController
 
   def viewdeal
     @groupon = GrouponDeal.find(params[:id])    
-    @page_url = SITE_URL + "/view/" + params[:id]
+    @page_url = SITE_URL + "/groupon_deal/" + params[:id]
     if (!session.nil?) 
       Thread.new { @viewed_action = session[:api].put_connections("me", "faiceupon:view", :groupon => @page_url) }
     end
