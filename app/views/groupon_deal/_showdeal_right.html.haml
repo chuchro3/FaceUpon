@@ -1,6 +1,6 @@
 #deal_links.border_style.box_style.round
   #deal_link_holder
-    = link_to "View", "/groupon_deal/#{@groupon[:id]}?action=view", :controller => "groupon_deal", :action => "view", :id => @groupon[:id], :class => "view_button round", :target => "_blank"
+    = link_to "View", "/groupon_deal/#{@groupon[:id]}?view=true", :controller => "groupon_deal", :action => "view", :id => @groupon[:id], :class => "view_button round", :target => "_blank"
     = link_to "Buy", "/buy/#{@groupon[:id]}", :controller => "groupon_deal", :action => "buy", :id => @groupon[:id], :class => "buy_button round", :target => "_blank"
   #deal_link_info
     On Groupon.com

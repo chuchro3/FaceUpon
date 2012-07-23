@@ -2,7 +2,7 @@ class GrouponDealController < ApplicationController
 
   def show
 
-    if (params[:action] == "view")
+    if (params[:view])
       viewdeal
     else
       @groupon = GrouponDeal.find(params[:id])
