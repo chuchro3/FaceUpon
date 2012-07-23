@@ -11,4 +11,8 @@
   = @groupon.pitchHtml.html_safe
 .fb-comments-container#my-fb-comment
   .fb-comments{ "data-href" => "#{@page_url}", "data-num-posts" => "5", "data-width" => "315"}
+.fb-like-container#my-fb-like
+  %div{:class => "fb-like", "data-send" => "true", "data-layout" => "standard", "data-href" => "#{@page_url}", "data-width" => "100", "data-show-faces" => "false"}
+
+
 
