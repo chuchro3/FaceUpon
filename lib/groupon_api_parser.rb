@@ -9,26 +9,29 @@ module GrouponApiParser
   @@client_id = "60e2f457f30d31204d8a60a2f66f80e573110f35"
   @@count = 0
 
-  def GrouponApiParser.get_deals
+  def GrouponApiParser.get_deals(chicagoOnly)
 
     print "Retrieving Groupon deals "    
 
 
-    deals_hash = get_divisions
+    deals_hash = get_divisions(chicagoOnly)
 
     
   end
 
-  def GrouponApiParser.get_divisions
+  def GrouponApiParser.get_divisions(chicagoOnly)
 
 
     url = "https://api.groupon.com/v2/divisions.json?client_id=" + @@client_id
 
     parsed_json = parse_url(url)
 
+    deals_hash = []
+
+    return deals_hash << (get_deals_by_division('chicago')) if chicagoOnly == 'true'
+
     @divisions_hash = parsed_json['divisions']
 
-    deals_hash = []
     @divisions_hash.each_with_index do |division, index|
       deals_hash << (get_deals_by_division(division['id']))
       if (index % 10 == 0)

@@ -225,20 +225,18 @@ a.view_button:hover {
 }
 
 a.buy_button {
-  float: right;
-  margin-left: 20px;
   display: block;
   text-align: center;
   width: 100px;
   color: #ddffee;
   background: #30a540;
   position: relative;
-  font-size: 125%;
+  font-size: 105%;
   font-weight: bold;
   padding: 4px;
   
   border-style: outset;
-  border-width: 3px;
+  border-width: 2px;
   border-color: #009000;
 
 }
@@ -374,4 +372,55 @@ li.error {
 
 #deal_static_right {
   width: 275px;
+}
+
+.option {
+
+}
+
+.option_info {
+  display: inline-block;
+  font-size: 105%;
+  width: 100%;
+  padding-bottom: 5px;
+}
+
+.option_title {
+  color: #001050;
+  float: left;
+  text-align: center;
+  width: 100%;
+}
+
+.option_buy_info {
+  display: inline-block;
+  width: 100%;
+}
+
+.option_prices {
+  float: left;
+  font-size: 90%;
+  width: 60%;
+}
+
+.option_buy {
+  float: left;
+  text-align: center;
+  width: 40%;
+}
+
+.sold_out {
+  display: block;
+  text-align: center;
+  width: 100px;
+  color: #ddffee;
+  background: #C0101D;
+  position: relative;
+  font-size: 100%;
+  font-weight: bold;
+  padding: 4px;
+  
+  border-style: outset;
+  border-width: 2px;
+  border-color: #900000;
 }

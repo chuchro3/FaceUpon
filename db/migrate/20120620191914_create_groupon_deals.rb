@@ -2,7 +2,6 @@ class CreateGrouponDeals < ActiveRecord::Migration
   def change
     create_table :groupon_deals do |t|
       t.string :groupon_type
-      t.string :endAt
       t.text :pitchHtml
       t.boolean :isNowDeal
       t.string :sidebarImageUrl

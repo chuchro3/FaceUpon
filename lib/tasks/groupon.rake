@@ -2,10 +2,11 @@
 require 'groupon_api_parser.rb'
 
 namespace :db do
-  task :groupon, [:isTest, :updateStatusOnly] => :environment do |t, args|
-    args.with_defaults(:isTest => false, :updateStatusOnly => false)
+  task :groupon, [:isTest, :updateStatusOnly, :chicagoOnly] => :environment do |t, args|
+    args.with_defaults(:isTest => false, :updateStatusOnly => false, :chicagoOnly => false)
     isTest = args[:isTest]
     updateStatusOnly = args[:updateStatusOnly]
+    chicagoOnly = args[:chicagoOnly]
     
     puts Time.now
 
@@ -13,7 +14,7 @@ namespace :db do
     logged_time = Time.parse(GrouponApiParser.get_time_file) unless GrouponApiParser.get_time_file.nil?
     time_since_update = Time.now - logged_time
     
-    if (time_since_update < 60*60*22 && !isTest)
+    if (time_since_update < 60*60*22 && isTest == 'false')
       hours = (time_since_update/3600).to_i
       minutes = (time_since_update/60 - hours * 60).to_i
       seconds = (time_since_update - (minutes * 60 + hours * 3600)).to_i
@@ -23,10 +24,10 @@ namespace :db do
       
       #Rake::Task['db:reset'].invoke
 
-      if (!updateStatusOnly) 
+      if (updateStatusOnly == 'false') 
         tStart_get = Time.now 
       
-        @deals_hash = GrouponApiParser.get_deals
+        @deals_hash = GrouponApiParser.get_deals(chicagoOnly)
 
         tDiff_get = Time.now - tStart_get
         puts "    -> " + tDiff_get.to_s + " s"
@@ -45,7 +46,6 @@ namespace :db do
     end
 
       Rake::Task['db:update_status'].invoke
-
 
 
       puts "Success!\n\n"

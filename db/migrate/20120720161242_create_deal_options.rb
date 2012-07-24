@@ -8,7 +8,7 @@ class CreateDealOptions < ActiveRecord::Migration
       t.string :value_formattedAmount
       t.string :soldQuantityMessage
       t.text :title
-      t.time :expiresAt
+      t.timestamp :expiresAt
       t.string :buyUrl
       t.string :price_formattedAmount
       t.string :discount_formattedAmount
