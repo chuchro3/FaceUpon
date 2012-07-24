@@ -3,7 +3,7 @@ require 'groupon_api_parser.rb'
 
 namespace :db do
   task :groupon, [:isTest, :updateStatusOnly, :chicagoOnly] => :environment do |t, args|
-    args.with_defaults(:isTest => false, :updateStatusOnly => false, :chicagoOnly => false)
+    args.with_defaults(:isTest => 'false', :updateStatusOnly => 'false', :chicagoOnly => 'false')
     isTest = args[:isTest]
     updateStatusOnly = args[:updateStatusOnly]
     chicagoOnly = args[:chicagoOnly]
@@ -66,7 +66,13 @@ namespace :db do
         end
 
         if (GrouponApiParser.isDuplicate?(deal)) then
-            next
+          deal['options'].each do |option_hash|
+            DealOption.find_by_title(option_hash['title']).update_attributes(
+              :isSoldOut                => option_hash['isSoldOut'],
+              :soldQuantity             => option_hash['soldQuantity'],
+              :soldQuantityMessage      => option_hash['soldQuantityMessage']
+            )
+          end
         end
         groupon = GrouponDeal.create(
           :groupon_type           => deal['type'],
@@ -141,4 +147,5 @@ namespace :db do
 
     puts "    -> #{(Time.now - start_time).round} seconds"
   end
+
 end
