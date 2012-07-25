@@ -15,7 +15,7 @@ namespace :db do
     time_since_update = Time.now - logged_time
     
     #only calls api every set number of hours after successful call
-    if (time_since_update < 60*60*2 && isTest == 'false')
+    if (time_since_update < 60*60*1 && isTest == 'false')
       hours = (time_since_update/3600).to_i
       minutes = (time_since_update/60 - hours * 60).to_i
       seconds = (time_since_update - (minutes * 60 + hours * 3600)).to_i

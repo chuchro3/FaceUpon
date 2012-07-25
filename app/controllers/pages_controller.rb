@@ -3,7 +3,8 @@ class PagesController < ApplicationController
   def callback
     @title = "Callback"
     @page_url = SITE_URL + "/pages/callback" 
-
+    
+    redirect_to SITE_URL
 
 
   end

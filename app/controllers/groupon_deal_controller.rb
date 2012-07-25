@@ -7,6 +7,8 @@ class GrouponDealController < ApplicationController
 
     if (params[:view])
       viewdeal
+    elsif (params[:buy] && params[:option])
+      buydeal
     elsif (params[:static_page])
       
     else
@@ -45,12 +47,13 @@ class GrouponDealController < ApplicationController
   end
 
   def buydeal
-    @groupon = GrouponDeal.find(params[:id])    
-    @page_url = SITE_URL + "/groupon_deal/" + params[:id]
+    @groupon = GrouponDeal.find(params[:id])
+    @option = DealOption.find(params[:option])
+    @page_url = SITE_URL + "/groupon_deal/" + params[:id] + "static_page=true"
     if (!session.nil?) 
       Thread.new { session[:api].put_connections("me", "faiceupon:buy", :groupon => @page_url) }
     end
-    #redirect_to @groupon.buyUrl
+    redirect_to @option.buyUrl
   end
 
 

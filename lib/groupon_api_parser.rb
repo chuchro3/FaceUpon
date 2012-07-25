@@ -54,7 +54,7 @@ module GrouponApiParser
   def GrouponApiParser.isDuplicate?(deal)
     groupon_deals = GrouponDeal.all
     groupon_deals.each do |groupon_deal|
-      if (deal['merchant']['name'] == groupon_deal.merchant_name && deal['division_id'] == groupon_deal.division_id)
+      if (deal['merchant']['name'] == groupon_deal.merchant_name && deal['division']['id'] == groupon_deal.division_id)
         return true
       end
     end
