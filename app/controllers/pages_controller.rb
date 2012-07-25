@@ -11,9 +11,6 @@ class PagesController < ApplicationController
     @title = "Home"
     @page_url = SITE_URL + "/"
 
-    render :layout => false
-
-
     #@groupon = GrouponDeal.find(2)
 
     if (params[:code])
@@ -28,6 +25,7 @@ class PagesController < ApplicationController
       @auth_url = session[:oauth].url_for_oauth_code(:permissions=>"user_about_me, user_likes, friends_likes, publish_actions, publish_stream, share_item")    
     end
 
+    render :layout => false
   end
 
   def facebook_action
