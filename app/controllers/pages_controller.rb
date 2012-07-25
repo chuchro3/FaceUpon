@@ -5,14 +5,14 @@ class PagesController < ApplicationController
     @page_url = SITE_URL + "/pages/callback" 
     
     redirect_to SITE_URL
-
-
   end
 
   def home
+    render :layout => false
+
     @title = "home"
     @page_url = SITE_URL + "/"
-    @groupon = GrouponDeal.find(2)
+    #@groupon = GrouponDeal.find(2)
 
     if (params[:code])
       

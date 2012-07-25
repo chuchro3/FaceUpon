@@ -1,16 +1,22 @@
-.home_container.column
-  .h1
-  %a{:class => "home_button round", :href => ""}
-    home
-  - if (params[:code])
-    code exists
-    %br
-    = session[:oauth]
-    %br
-    = params[:code]
-  - else
-    %p
-      code does not exist
-    = link_to "authorize", @auth_url
-  %br
+= render 'layouts/header'
+%body.home
+  #home.container
+    = render 'layouts/facebookauth'
+    .home-groupons
+      = render 'layouts/searchlogo'      
+
+
+
+
+
+
+    -# if (params[:code])
+      code exists
+      %br
+      = session[:oauth]
+      %br
+      = params[:code]
+    -# else
+      %p
+        code does not exist
 

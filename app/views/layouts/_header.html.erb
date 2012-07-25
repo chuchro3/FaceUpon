@@ -1,0 +1,15 @@
+<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="en-US"
+  xmlns:fb="https://www.facebook.com/2008/fbml">
+
+<head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# faiceupon: http://ogp.me/ns/fb/faiceupon#">
+  <title>FaiceUpon | <%= @title %></title>
+  <%= render 'layouts/metatags' %>
+  <%= render 'layouts/stylesheets' %>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css"/>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+</head>
+

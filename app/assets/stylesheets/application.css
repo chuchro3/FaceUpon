@@ -21,10 +21,21 @@ body {
   font-family: Tahoma, Georgia;
 }
 
+body.home {
+  min-width: 900px;
+}
+
 .container {
   background-image: url('groupon.jpg');
   background-size: 100%;
   background-repeat: no-repeat;
+}
+
+.container#home {
+  height: 100%;
+}
+
+#searchlogo {
 }
 
 .border_style {
@@ -49,10 +60,14 @@ body {
   padding-bottom: 10px;
 }
 
+.home-groupons {
+  padding-top: 150px;
+  text-align: center;
+}
+
 .find-groupons {
   float: left;
   text-align: center;
-  
 }
 
 .home_container {
@@ -119,6 +134,11 @@ body {
   padding-top: 10px;
   margin-bottom: 15px;
   margin-top: 20px;
+}
+
+.fb_auth {
+  float: right;
+  padding-top: 5px;
 }
 
 #display-fb-comments {
@@ -250,6 +270,32 @@ a.buy_button:hover {
 
 }
 
+a.facebook_button {
+  display: inline-block;
+  text-align: center;
+  width: 125px;
+  color: #ddffee;
+  background: #3040a5;
+  position: relative;
+  font-size: 105%;
+  font-weight: bold;
+  padding: 4px;
+  
+  border-style: outset;
+  border-width: 2px;
+  border-color: #000090;
+
+}
+
+a.facebook_button:hover {
+  color: #fff;
+  background: #002082;
+  text-decoration: none;
+
+  border-color: #0040a0;
+}
+
+
 .box_style {
   background-color: white;
   padding: 5px;
@@ -336,24 +382,22 @@ ul.alerts {
   list-style-type: none;
   padding: 5px 0 5px 0;
   width: 50%;
-
 }
 
 li.error {
   background: #ffdcd7;
   padding: 5px;
-
   border-style: solid;
   border-width: 1px;
   border-color: #800000;
 }
 
 #error_message {
-      color: red;
-      background: image-url("http://www.groupon.com/images/groupon/icons/error.gif");
-      font-size: 20px;
-      padding: 5px 0 5px 0px;
-      text-align: center;
+  color: red;
+  background: image-url("http://www.groupon.com/images/groupon/icons/error.gif");
+  font-size: 20px;
+  padding: 5px 0 5px 0px;
+  text-align: center;
 }
 
 #jquery_arrow {
