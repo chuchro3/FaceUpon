@@ -14,7 +14,8 @@ namespace :db do
     logged_time = Time.parse(GrouponApiParser.get_time_file) unless GrouponApiParser.get_time_file.nil?
     time_since_update = Time.now - logged_time
     
-    if (time_since_update < 60*60*22 && isTest == 'false')
+    #only calls api every set number of hours after successful call
+    if (time_since_update < 60*60*2 && isTest == 'false')
       hours = (time_since_update/3600).to_i
       minutes = (time_since_update/60 - hours * 60).to_i
       seconds = (time_since_update - (minutes * 60 + hours * 3600)).to_i
@@ -73,6 +74,7 @@ namespace :db do
               :soldQuantityMessage      => option_hash['soldQuantityMessage']
             )
           end
+          next
         end
         groupon = GrouponDeal.create(
           :groupon_type           => deal['type'],
@@ -91,7 +93,6 @@ namespace :db do
           :announcementTitle      => deal['announcementTitle'],
           :highlightsHtml         => deal['highlightsHtml'],
           :merchant_name          => deal['merchant']['name'],
-
           :isSoldOut              => deal['isSoldOut'],
           :dealUrl                => deal['dealUrl'],
           :websiteUrl             => deal['websiteUrl'],

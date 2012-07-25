@@ -13,10 +13,7 @@ module GrouponApiParser
 
     print "Retrieving Groupon deals "    
 
-
     deals_hash = get_divisions(chicagoOnly)
-
-    
   end
 
   def GrouponApiParser.get_divisions(chicagoOnly)
@@ -57,7 +54,7 @@ module GrouponApiParser
   def GrouponApiParser.isDuplicate?(deal)
     groupon_deals = GrouponDeal.all
     groupon_deals.each do |groupon_deal|
-      if (deal['merchant']['name'] == groupon_deal[:merchant_name])
+      if (deal['merchant']['name'] == groupon_deal.merchant_name && deal['division_id'] == groupon_deal.division_id)
         return true
       end
     end
@@ -90,46 +87,5 @@ module GrouponApiParser
       return f.gets
     end
   end
-
-  def GrouponApiParser.one_method()
-    client_id = "60e2f457f30d31204d8a60a2f66f80e573110f35"
-    url = "https://api.groupon.com/v2/divisions.json?client_id=" + client_id
-
-    uri = URI.parse(url)
-    parsed_json JSON.parse(uri.open.read)
-
-
-    @divisions_hash = parsed_json['divisions']
-
-    @divisions_hash.each do |division|
-      divisionid = division['id']
-      url = "https://api.groupon.com/v2/deals.json?division_id=" + divisionid + "&client_id=" + client_id
-    
-      uri = URI.parse(url)
-      parsed_json JSON.parse(uri.open.read)
-
-
-      @deals_hash = parsed_json['deals']
-
-      @deals_hash.each do |deal|
-        groupon_deal = GrouponDeal.new(
-          :groupon_type    => deal['type'],
-          :isNowDeal       => deal['isNowDeal'],
-          :pitchHtml       => deal['pitchHtml'],
-          :sidebarImageUrl => deal['sidebarImageUrl'],
-          :status          => deal['status'],
-          :vip             => deal['vip'],
-          :endAt           => deal['endAt'],
-          :division_id     => deal['division']['id'],
-          :division_lat    => deal['division']['id'],
-          :division_lng    => deal['division']['id'],
-          :division_name   => deal['division']['id']
-        )
-        groupon_deal.save!
-      end
-    end
-
-  end
-
 
 end

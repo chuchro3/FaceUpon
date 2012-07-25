@@ -1,44 +1,5 @@
-#deal_links.border_style.box_style.round
-  #deal_link_holder
-    = link_to "View", "/groupon_deal/#{@groupon[:id]}?view=true", {:class => "view_button round", :target => "_blank"}
-  #deal_link_info
-    On Groupon.com
-#deal_options.border_style.box_style.round
-  - @groupon.DealOptions.each do |option|
-    .option.round.border_style
-      .option_info
-        .option_title
-          = option.title
-      .option_buy_info
-        .option_prices
-          %b
-            = option.value_formattedAmount
-          Value
-          %br
-          %b
-            #{option.discountPercent}%
-          off
-          %br
-          Save 
-          %b
-            = option.discount_formattedAmount
-        .option_buy
-          = option.soldQuantityMessage
-          Bought
-          %br
-          - if option.isSoldOut
-            .sold_out.round
-              Sold Out!
-          - else
-            = link_to option.price_formattedAmount, "/groupon_deal/#{@groupon[:id]}?buy=true&option=#{option.id}", :controller => "groupon_deal", :action => "buy", :id => @groupon[:id], :class => "buy_button round", :target => "_blank"
-
-#highlights.border_style.box_style.round
-  .title_fade
-    Summary
-  = @groupon.highlightsHtml.html_safe
-#fineprint.border_style.box_style.round
-  .title_fade
-    The Fine Print
-  %p
-    = @groupon.finePrint.html_safe
+= render 'showdeal_highlights'
+= render 'showdeal_viewlink'
+= render 'showdeal_options'
+= render 'showdeal_fineprint'
 

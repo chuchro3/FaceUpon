@@ -309,14 +309,15 @@ a.buy_button:hover {
 
 #deal_link_holder {
   display: inline-block;
-  margin-bottom: 10px;
-  margin-left: 20px;
 }
 
 #deal_link_info {
   color: #008040;
+  display: inline-block;
   font-size: 125%;
+  padding-left: 10px;
   text-align: center;
+  vertical-align: 10px;
 }
 
 p {
@@ -375,7 +376,8 @@ li.error {
 }
 
 .option {
-
+  margin-top: 5px;
+  padding: 0px 5px 5px 5px;
 }
 
 .option_info {
@@ -407,6 +409,10 @@ li.error {
   float: left;
   text-align: center;
   width: 40%;
+}
+.option.border_style {
+  border-width: 1px;
+  border-color: #90D0C1;
 }
 
 .sold_out {
