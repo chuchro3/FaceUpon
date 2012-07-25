@@ -22,7 +22,7 @@ body {
 }
 
 body.home {
-  min-width: 900px;
+  min-width: 760px;
 }
 
 .container {
