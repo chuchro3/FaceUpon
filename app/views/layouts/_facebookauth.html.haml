@@ -1,5 +1,5 @@
 .fb_auth
-  - if !@api
+  - if !session[:api]
     = link_to "Connect with Facebook", @auth_url, :class => "facebook_button round"
   - else
     Welcome, #{@api.get_object("me")["name"]}!

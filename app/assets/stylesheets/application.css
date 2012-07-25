@@ -138,6 +138,7 @@ body.home {
 
 .fb_auth {
   float: right;
+  padding-right: 10px;
   padding-top: 5px;
 }
 

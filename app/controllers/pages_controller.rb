@@ -8,17 +8,19 @@ class PagesController < ApplicationController
   end
 
   def home
+    @title = "Home"
+    @page_url = SITE_URL + "/"
+
     render :layout => false
 
-    @title = "home"
-    @page_url = SITE_URL + "/"
+
     #@groupon = GrouponDeal.find(2)
 
     if (params[:code])
       
       session[:access_token] = session[:oauth].get_access_token(params[:code])
       @api = Koala::Facebook::API.new(session[:access_token]) 
-      @graph_data = @api.get_object("/me/statuses")
+      #@graph_data = @api.get_object("/me/statuses")
       #@api.put_connections("me", "faiceupon:buy", :groupon => @page_url)
       session[:api] = @api
     else
