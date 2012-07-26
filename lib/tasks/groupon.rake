@@ -143,7 +143,7 @@ namespace :db do
     puts "    -> #{(Time.now - start_time).round} seconds"
   end
 
-  def create_option(groupon, opotion_hash)
+  def create_option(groupon, option_hash)
     groupon.DealOptions << DealOption.create(
       :buyUrl                   => option_hash['buyUrl'],
       :details_description      => option_hash['details'].first['description'],
