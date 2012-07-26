@@ -14,4 +14,11 @@ class PagesController < ApplicationController
     render :layout => false
   end
 
+  def logout
+    respond_to do |format|
+      format.html { flash[:error] = 'You have been logged out.'}
+      format.js { render :layout => false}
+    end
+  end
+
 end
