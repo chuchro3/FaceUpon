@@ -19,7 +19,6 @@ $(document).ready(function() {
     $('.display_deal_left').fadeOut(400, function() {
 
       $(this).html("<%= escape_javascript(render(:template => 'groupon_deal/show.html.haml')) %>");
-      //$(this).html("<%= escape_javascript(render(:partial => 'showdeal_left')) %>");
 
       FB.XFBML.parse();
 
