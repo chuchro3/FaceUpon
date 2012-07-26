@@ -1,4 +1,5 @@
 class GrouponDealController < ApplicationController
+  before_filter :facebook_authorizer
 
   def show
     @groupon = GrouponDeal.find(params[:id])
@@ -21,6 +22,7 @@ class GrouponDealController < ApplicationController
 
   def search
     @title = params[:search]
+    @page_url = SITE_URL + "/search?search=" + params[:search] 
 
     if @title.empty?
       flash[:error] = 'Invalid search'
