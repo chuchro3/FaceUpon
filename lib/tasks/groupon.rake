@@ -2,11 +2,12 @@
 require 'groupon_api_parser.rb'
 
 namespace :db do
-  task :groupon, [:isTest, :updateStatusOnly, :chicagoOnly] => :environment do |t, args|
-    args.with_defaults(:isTest => 'false', :updateStatusOnly => 'false', :chicagoOnly => 'false')
+  task :groupon, [:isTest, :updateStatusOnly, :chicagoOnly, :ignoreLogs] => :environment do |t, args|
+    args.with_defaults(:isTest => 'false', :updateStatusOnly => 'false', :chicagoOnly => 'false', :ignoreLogs => 'false')
     isTest = args[:isTest]
     updateStatusOnly = args[:updateStatusOnly]
     chicagoOnly = args[:chicagoOnly]
+    ignoreLogs = args[:ignoreLogs]
     
     puts Time.now
 
@@ -41,7 +42,7 @@ namespace :db do
         tDiff_save = Time.now - tStart_save
         puts "    -> " + tDiff_save.to_s + " s"
 
-        GrouponApiParser.update_time_file
+        GrouponApiParser.update_time_file if (ignoreLogs == 'false')
       end
 
     end
@@ -68,11 +69,17 @@ namespace :db do
 
         if (GrouponApiParser.isDuplicate?(deal)) then
           deal['options'].each do |option_hash|
-            DealOption.find_by_title(option_hash['title']).update_attributes(
-              :isSoldOut                => option_hash['isSoldOut'],
-              :soldQuantity             => option_hash['soldQuantity'],
-              :soldQuantityMessage      => option_hash['soldQuantityMessage']
-            )
+            option = DealOption.find_by_title(option_hash['title'])
+            if (option.present?)
+              option.update_attributes(
+                :isSoldOut                => option_hash['isSoldOut'],
+                :soldQuantity             => option_hash['soldQuantity'],
+                :soldQuantityMessage      => option_hash['soldQuantityMessage']
+              )
+            else
+              groupon = GrouponDeal.find_by_dealUrl(deal['dealUrl'])
+              create_option(groupon, option_hash) 
+            end
           end
           next
         end
@@ -102,20 +109,7 @@ namespace :db do
         )
 
         deal['options'].each do |option_hash|
-          groupon.DealOptions << DealOption.create(
-            :buyUrl                   => option_hash['buyUrl'],
-            :details_description      => option_hash['details'].first['description'],
-            :discountPercent          => option_hash['discountPercent'],
-            :discount_formattedAmount => option_hash['discount']['formattedAmount'],
-            :expiresAt                => option_hash['expiresAt'],
-            :isSoldOut                => option_hash['isSoldOut'],
-            :maximumPurchaseQuantity  => option_hash['maximmumPurchaseQuantity'],
-            :price_formattedAmount    => option_hash['price']['formattedAmount'],
-            :soldQuantity             => option_hash['soldQuantity'],
-            :soldQuantityMessage      => option_hash['soldQuantityMessage'],
-            :title                    => option_hash['title'], 
-            :value_formattedAmount    => option_hash['value']['formattedAmount']
-          )
+          create_option(groupon, option_hash)
         end
         #puts ("\"" + deal['highlightsHtml'] + "\" saved (" + index.to_s + ")").html_safe
 
@@ -147,6 +141,23 @@ namespace :db do
     puts "#{deals_that_expired} newly expired deals"
 
     puts "    -> #{(Time.now - start_time).round} seconds"
+  end
+
+  def create_option(groupon, opotion_hash)
+    groupon.DealOptions << DealOption.create(
+      :buyUrl                   => option_hash['buyUrl'],
+      :details_description      => option_hash['details'].first['description'],
+      :discountPercent          => option_hash['discountPercent'],
+      :discount_formattedAmount => option_hash['discount']['formattedAmount'],
+      :expiresAt                => option_hash['expiresAt'],
+      :isSoldOut                => option_hash['isSoldOut'],
+      :maximumPurchaseQuantity  => option_hash['maximmumPurchaseQuantity'],
+      :price_formattedAmount    => option_hash['price']['formattedAmount'],
+      :soldQuantity             => option_hash['soldQuantity'],
+      :soldQuantityMessage      => option_hash['soldQuantityMessage'],
+      :title                    => option_hash['title'], 
+      :value_formattedAmount    => option_hash['value']['formattedAmount']
+    )
   end
 
 end
