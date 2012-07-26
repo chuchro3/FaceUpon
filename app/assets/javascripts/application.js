@@ -24,13 +24,6 @@ $(document).ready(function() {
 
   });
 
-  function facebook_logout() {
-    FB.logout(function(response) {
-      alert("Successfully logged out!");
-      window.location.replace("/");
-    });
-  }
-
 
 
 
