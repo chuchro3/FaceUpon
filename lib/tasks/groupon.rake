@@ -12,7 +12,7 @@ namespace :db do
     puts Time.now
 
     logged_time = Time.now - 60*60*22
-    logged_time = Time.parse(GrouponApiParser.get_time_file) unless GrouponApiParser.get_time_file.nil?
+    logged_time = Time.parse(GrouponApiParser.get_time_file) unless ignoreLogs == 'true' || GrouponApiParser.get_time_file.nil?
     time_since_update = Time.now - logged_time
     
     #only calls api every set number of hours after successful call
