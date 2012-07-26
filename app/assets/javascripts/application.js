@@ -17,11 +17,13 @@
 //
 $(document).ready(function() {
 
+
   $('#alerts').bind('mouseenter', function() {
     
     $(this).fadeOut(1500);
 
   });
+
 
 
 

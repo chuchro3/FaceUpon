@@ -2,6 +2,6 @@
   - if !session[:api]
     = link_to "Connect with Facebook", @auth_url, :class => "facebook_button round"
   - else
-    Welcome #{session[:api].get_object("me")["name"]}!
-    = link_to('', "Not #{session[:api].get_object("me")["name"]}?")
+    Welcome #{session[:api].get_object("me")["name"]}! | 
+    = link_to "Not #{session[:api].get_object("me")["first_name"]}?", '#'
 

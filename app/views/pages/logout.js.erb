@@ -1,0 +1,8 @@
+$(document).ready(function() {
+
+  FB.logout(function(response) {
+    alert("Successfully logged out!");
+    window.location.replace("<%= SITE_URL %>");
+  });
+
+});

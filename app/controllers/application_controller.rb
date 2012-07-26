@@ -2,7 +2,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
 
   def facebook_authorizer
-    @page_url = SITE_URL + "/" 
+    @page_url = SITE_URL + "/pages/callback" 
 
     if (params[:code])
       session[:access_token] = session[:oauth].get_access_token(params[:code])

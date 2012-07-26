@@ -11,7 +11,7 @@ class GrouponDealController < ApplicationController
     elsif (params[:buy] && params[:option])
       buydeal
     elsif (params[:static_page])
-      
+      #do nothing
     else
       respond_to do |format|
         format.html
