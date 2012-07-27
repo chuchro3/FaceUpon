@@ -11,7 +11,9 @@ class PagesController < ApplicationController
     @title = "Home"
     @page_url = SITE_URL + "/"
 
-    render :layout => false
+    @quote = Quote.all[rand(Quote.count)]
+
+    render :layout => false    
   end
 
   def logout

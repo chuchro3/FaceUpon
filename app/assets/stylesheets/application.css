@@ -479,3 +479,10 @@ li.error {
 .not_me {
   font-size: 90%;
 }
+.quote {
+  background-color: whitesmoke;
+  margin: 150px auto;
+  width: 65%;
+  padding: 5px;
+  text-align: center;
+}
