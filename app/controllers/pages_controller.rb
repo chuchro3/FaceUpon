@@ -15,6 +15,9 @@ class PagesController < ApplicationController
   end
 
   def logout
+
+    reset_session
+
     respond_to do |format|
       format.html { flash[:error] = 'You have been logged out.'}
       format.js { render :layout => false}
