@@ -17,6 +17,7 @@ class PagesController < ApplicationController
   def logout
 
     reset_session
+    facebook_authorizer
 
     respond_to do |format|
       format.html { flash[:error] = 'You have been logged out.'}
