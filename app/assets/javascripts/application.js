@@ -21,10 +21,4 @@ $(document).ready(function() {
     $(this).fadeOut(1500);
   });
 
-  $('.not_me > a').click(function() {
-    FB.logout(function(response) {
-    alert ('sooo sad to see you go.');
-    window.location.replace("/");
-    });
-  });
 });

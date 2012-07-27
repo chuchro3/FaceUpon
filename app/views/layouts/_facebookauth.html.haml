@@ -4,5 +4,5 @@
   - else
     Welcome #{session[:api].get_object("me")["name"]}! | 
     %span.not_me
-      = link_to "Not #{session[:api].get_object('me')['first_name']}?", logout_path
+      = link_to "Not #{session[:api].get_object('me')['first_name']}?", logout_path, :remote => true, :class => 'logout_link'
 
