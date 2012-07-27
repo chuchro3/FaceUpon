@@ -1,13 +1,10 @@
 $(document).ready(function() {
-  console.log('here i am');
 
   $('.logout_link').bind('ajax:complete', function() {
   
     $('.fb_auth').fadeOut(400, function() {
 
       FB.logout(function(response) {
-        alert("Successfully logged out!");
-        window.location.replace("/");
       });
     
       $('.fb_auth').html("<%= escape_javascript(render(:partial => 'layouts/facebookauth')) %>");
