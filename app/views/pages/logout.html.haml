@@ -1,9 +1,6 @@
 :javascript
   $(document).ready(function() {
-    console.log('here i am');
-    FB.XFBML.parse();
     FB.logout(function(response) {
-      alert("Successfully logged out!");
       window.location.replace("/");
     });
   });
