@@ -475,3 +475,7 @@ li.error {
   border-width: 2px;
   border-color: #900000;
 }
+
+.not_me {
+  font-size: 90%;
+}
