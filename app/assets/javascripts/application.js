@@ -23,6 +23,7 @@ $(document).ready(function() {
 
   $('.not_me > a').click(function() {
     FB.logout(function(response) {
+    alert ('sooo sad to see you go.');
     window.location.replace("/");
     });
   });
