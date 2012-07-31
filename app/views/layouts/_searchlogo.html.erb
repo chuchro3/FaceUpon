@@ -1,7 +1,7 @@
 <%= link_to image_tag("faiceupon.png", :height => 90), root_path %>
 <form name="search" action = "/search" method = "get">
-  <input type="text" name="search" /> | 
-  <input type="text" name="division" data-autocomplete="division/autocomplete_division_name" /> |
+  Search: <input type="text" name="search" /> | 
+  Division: <input type="text" name="division" data-autocomplete="division/autocomplete_division_name" /> |
   <input type="submit" value="search" class='search_button'/>
 </form>
 <%= render 'layouts/alerts' %>

@@ -31,7 +31,7 @@ class GrouponDealController < ApplicationController
 
       @groupon_deal = GrouponDeal.find_with_index('^'+params[:search])
       @groupon_deal = @groupon_deal.select {|x| x[:active_status]} | @groupon_deal.reject {|x| x[:active_status]}
-      @groupon_deal = @groupon_deal.select {|x| x.division_name == params[:division]}
+      @groupon_deal = @groupon_deal.select {|x| x.division_name == params[:division]} unless params[:division].empty?
       @groupon_deal = @groupon_deal.paginate(:page => params[:page], :per_page => 10)
       
       if @groupon_deal.empty?
