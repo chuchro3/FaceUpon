@@ -71,7 +71,14 @@ module GrouponApiParser
   def GrouponApiParser.parse_url(url)
 
     uri = URI.parse(url)
-    return JSON.parse(uri.open.read)
+
+    begin
+      return JSON.parse(uri.open.read)
+    rescue Exception => e
+      print '|'
+      sleep(1)
+      retry
+    end
 
   end
 

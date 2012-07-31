@@ -78,7 +78,7 @@ namespace :db do
               )
             else
               groupon = GrouponDeal.find_by_dealUrl(deal['dealUrl'])
-              create_option(groupon, option_hash) 
+              create_option(groupon, option_hash) if groupon.present? 
             end
           end
           next

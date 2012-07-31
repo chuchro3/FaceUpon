@@ -31,12 +31,18 @@ class GrouponDealController < ApplicationController
       @groupon_deal = GrouponDeal.find_with_index('^'+params[:search])
       @groupon_deal = @groupon_deal.select {|x| x[:active_status]} | @groupon_deal.reject {|x| x[:active_status]}
       @groupon_deal = @groupon_deal.paginate(:page => params[:page], :per_page => 10)
-
-      respond_to do |format|
-        format.html
-        format.js { render :layout => false}
+      
+      if @groupon_deal.empty?
+        flash[:error] = "Your search - #{params[:search]} - did not match any deals"
+        redirect_to :back
+      else
+        respond_to do |format|
+          format.html
+          format.js { render :layout => false}
+        end
       end
     end
+
   end
 
   def viewdeal
