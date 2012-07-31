@@ -136,6 +136,13 @@ body.home {
   margin-top: 20px;
 }
 
+.header {
+  min-width: 600px;
+  max-width: 1120px;
+  width: 100%;
+  position: absolute;
+}
+
 .fb_auth {
   float: right;
   padding-right: 10px;
