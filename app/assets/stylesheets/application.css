@@ -389,7 +389,7 @@ ul.alerts {
   margin: auto;
   list-style-type: none;
   padding: 5px 0 5px 0;
-  width: 85%;
+  width: 400px;
 }
 
 li.error {
