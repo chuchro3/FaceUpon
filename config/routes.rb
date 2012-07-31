@@ -10,6 +10,9 @@ FaceUpon::Application.routes.draw do
 
   get "pages/home"
 
+  get "division/show"
+  get "division/autocomplete_division_name"
+
   match 'search', :to => 'groupon_deal#search'
   match 'view/:id', :to => 'groupon_deal#viewdeal'
   match 'buy/:id', :to => 'groupon_deal#buydeal'

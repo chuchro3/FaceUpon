@@ -7,6 +7,7 @@ gem 'rails', '3.2.6'
 gem 'pg'
 gem 'taps'
 gem 'blueprint-rails'
+gem 'rails3-jquery-autocomplete'
 
 gem 'will_paginate'
 
