@@ -49,6 +49,8 @@ namespace :db do
 
       Rake::Task['db:update_status'].invoke
 
+      Rake::Task['db:destroy_expired'].invoke
+
 
       puts "Success!\n\n"
 
@@ -141,6 +143,31 @@ namespace :db do
     puts "#{deals_that_expired} newly expired deals"
 
     puts "    -> #{(Time.now - start_time).round} seconds"
+  end
+
+  task :destroy_expired => :environment do
+
+    print "Deleting old deals "
+    start_time = Time.now
+
+
+    expired_deals = GrouponDeal.where("active_status = ? ", false)
+    
+    deleted_deals = 0
+    expired_deals.each_with_index do |deal, index|
+      if deal.old?
+        GrouponDeal.destroy(deal.id)
+        deleted_deals += 1
+      end
+      print '.' if index % 200 == 0
+    end
+
+    puts "Success!"
+    puts "#{deleted_deals} old deals removed"
+
+    puts "    -> #{(Time.now - start_time).round} seconds"
+
+
   end
 
   def create_option(groupon, option_hash)

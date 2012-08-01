@@ -10,4 +10,8 @@ class GrouponDeal < ActiveRecord::Base
   def expired?
     Time.now - endAt > 60*60*12
   end
+
+  def old?
+    Time.now - endAt > 60*60*24*10
+  end
 end
