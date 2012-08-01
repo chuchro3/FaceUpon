@@ -483,6 +483,22 @@ li.error {
   border-color: #900000;
 }
 
+.expired {
+  display: block;
+  text-align: center;
+  width: 100px;
+  color: #D9C9C9;
+  background: #998793;
+  position: relative;
+  font-size: 100%;
+  font-weight: bold;
+  padding: 4px;
+  
+  border-style: outset;
+  border-width: 2px;
+  border-color: #9f5050;
+}
+
 .not_me {
   font-size: 90%;
 }

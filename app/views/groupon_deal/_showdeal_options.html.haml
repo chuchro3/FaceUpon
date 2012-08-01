@@ -26,6 +26,9 @@
           - if option.isSoldOut
             .sold_out.round
               Sold Out!
+          - elsif !@groupon.active_status
+            .expired.round
+              Expired
           - else
             = link_to option.price_formattedAmount, "/groupon_deal/#{@groupon[:id]}?buy=true&option=#{option.id}", :controller => "groupon_deal", :action => "buy", :id => @groupon[:id], :class => "buy_button round", :target => "_blank"
 

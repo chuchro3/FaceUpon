@@ -3,26 +3,8 @@
 
 
 Define a "want to buy with X people" action
+  - does not seem to be possible
 
-
-fix buy button
-  - there is a buy url for every option
-
-
-make a real home page
-
-
-
-handle 0 search results
-on load - run this: 
-set button to disabled :$('.search_button').attr('disabled', 'disable');
-add a class to search_input
-js function on it's .change IE $('.serach_input).change function() {
-//do something
-if size is great than 1, enable button
-if size is 0 disbale
-
-}
   
 
 
@@ -54,6 +36,25 @@ ajaxify the like button
 
 
 refresh fb-info (news ticker feed) div periodically
+
+
+fix buy button
+  - there is a buy url for every option
+
+
+make a real home page
+
+
+handle 0 search results
+on load - run this: 
+set button to disabled :$('.search_button').attr('disabled', 'disable');
+add a class to search_input
+js function on it's .change IE $('.serach_input).change function() {
+//do something
+if size is great than 1, enable button
+if size is 0 disbale
+
+
 
 
 
