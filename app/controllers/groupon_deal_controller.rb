@@ -2,8 +2,11 @@ class GrouponDealController < ApplicationController
   before_filter :facebook_authorizer
 
   def show
-    @groupon = GrouponDeal.find(params[:id])
-    @title = @groupon[:merchant_name]
+    begin
+      @groupon = GrouponDeal.find(params[:id])
+    rescue
+    end
+    @title = @groupon[:merchant_name] if @groupon.present?
     @page_url = SITE_URL + "/groupon_deal/#{params[:id]}?static_page=true"
 
     if (params[:view])

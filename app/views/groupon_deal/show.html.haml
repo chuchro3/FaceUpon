@@ -1,6 +1,9 @@
 -#= @page_url
 -#= params[:action]
 - if params[:static_page]
-  = render 'groupon_deal/showdeal_static'
+  - if @groupon.present?
+    = render 'groupon_deal/showdeal_static'
+  - else
+    Sorry this deal no longer exists
 - else
   = render 'groupon_deal/showdeal_left'
