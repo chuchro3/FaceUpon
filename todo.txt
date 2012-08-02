@@ -1,12 +1,8 @@
-
-
+Add google map feature
 
 
 Define a "want to buy with X people" action
   - does not seem to be possible
-
-  
-
 
 
 

@@ -1,9 +1,8 @@
-.header
-  .fb_auth
-    - if !session[:api]
-      = link_to "Connect with Facebook", @auth_url, :class => "facebook_button round"
-    - else
-      Welcome #{session[:api].get_object("me")["name"]}! | 
-      %span.not_me
-        = link_to "Not #{session[:api].get_object('me')['first_name']}?", logout_path, :remote => true, :class => 'logout_link'
+.fb_auth
+  - if !session[:api]
+    = link_to "Connect with Facebook", @auth_url, :class => "facebook_button round"
+  - else
+    Welcome #{session[:api].get_object("me")["name"]}! | 
+    %span.not_me
+      = link_to "Not #{session[:api].get_object('me')['first_name']}?", logout_path, :remote => true, :class => 'logout_link'
 
