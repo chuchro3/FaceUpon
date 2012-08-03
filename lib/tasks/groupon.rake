@@ -51,6 +51,7 @@ namespace :db do
 
       Rake::Task['db:destroy_expired'].invoke
 
+      Rake::Task['db:reindex'].invoke
 
       puts "Success!\n\n"
 
@@ -168,6 +169,16 @@ namespace :db do
     puts "    -> #{(Time.now - start_time).round} seconds"
 
 
+  end
+
+  task :reindex => :environment do
+    start_time = Time.now
+    print "Building search index.."
+
+    GrouponDeal.find_with_index('^chi')
+    
+    puts "Success!"
+    puts "    -> #{(Time.now - start_time).round} seconds"
   end
 
   def create_option(groupon, option_hash)
