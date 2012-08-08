@@ -15,9 +15,11 @@ class CreateDealOptions < ActiveRecord::Migration
       t.integer :discountPercent
       t.text :details_description
       t.integer :maximumPurchaseQuantity
+      t.integer :optionID
 
       t.timestamps
     end
+    add_index :deal_options, :optionID, :unique => true
   end
   
   def down

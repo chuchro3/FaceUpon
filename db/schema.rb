@@ -27,9 +27,12 @@ ActiveRecord::Schema.define(:version => 20120727192741) do
     t.integer  "discountPercent"
     t.text     "details_description"
     t.integer  "maximumPurchaseQuantity"
+    t.integer  "optionID"
     t.datetime "created_at",               :null => false
     t.datetime "updated_at",               :null => false
   end
+
+  add_index "deal_options", ["optionID"], :name => "index_deal_options_on_optionID", :unique => true
 
   create_table "divisions", :force => true do |t|
     t.string   "name"
@@ -65,6 +68,8 @@ ActiveRecord::Schema.define(:version => 20120727192741) do
     t.text     "options"
     t.text     "finePrint"
   end
+
+  add_index "groupon_deals", ["merchant_name"], :name => "index_groupon_deals_on_merchant_name", :unique => true
 
   create_table "quotes", :force => true do |t|
     t.string   "quote"

@@ -66,54 +66,48 @@ namespace :db do
     @deals_hash.each do |deals|
       deals.each_with_index do |deal, index|
         
-        if index % 600 == 0
-          print "."
-        end
+        print "." if index % 600 == 0
 
-        if (GrouponApiParser.isDuplicate?(deal)) then
+        begin
+          groupon = GrouponDeal.create(
+            :groupon_type           => deal['type'],
+            :isNowDeal              => deal['isNowDeal'],
+            :pitchHtml              => deal['pitchHtml'],
+            :sidebarImageUrl        => deal['sidebarImageUrl'],
+            :status                 => deal['status'],
+            :vip                    => deal['vip'],
+            :startAt                => deal['startAt'].blank? ? nil : Time.parse(deal['startAt']),
+            :endAt                  => deal['endAt'].blank? ? nil : Time.parse(deal['endAt']),
+            :active_status          => true,
+            :division_id            => deal['division']['id'],
+            :division_lat           => deal['division']['lat'],
+            :division_lng           => deal['division']['lng'],
+            :division_name          => deal['division']['name'],
+            :announcementTitle      => deal['announcementTitle'],
+            :highlightsHtml         => deal['highlightsHtml'],
+            :merchant_name          => deal['merchant']['name'],
+            :isSoldOut              => deal['isSoldOut'],
+            :dealUrl                => deal['dealUrl'],
+            :websiteUrl             => deal['websiteUrl'],
+            :title                  => deal['title'],
+            :shortAnnouncementTitle => deal['shortAnnouncementTitle'],
+            :finePrint              => deal['finePrint']
+          )
           deal['options'].each do |option_hash|
-            option = DealOption.find_by_title(option_hash['title'])
-            if (option.present?)
-              option.update_attributes(
-                :isSoldOut                => option_hash['isSoldOut'],
-                :soldQuantity             => option_hash['soldQuantity'],
-                :soldQuantityMessage      => option_hash['soldQuantityMessage']
-              )
-            else
-              groupon = GrouponDeal.find_by_dealUrl(deal['dealUrl'])
-              create_option(groupon, option_hash) if groupon.present? 
-            end
-          end
-          next
-        end
-        groupon = GrouponDeal.create(
-          :groupon_type           => deal['type'],
-          :isNowDeal              => deal['isNowDeal'],
-          :pitchHtml              => deal['pitchHtml'],
-          :sidebarImageUrl        => deal['sidebarImageUrl'],
-          :status                 => deal['status'],
-          :vip                    => deal['vip'],
-          :startAt                => deal['startAt'].blank? ? nil : Time.parse(deal['startAt']),
-          :endAt                  => deal['endAt'].blank? ? nil : Time.parse(deal['endAt']),
-          :active_status          => true,
-          :division_id            => deal['division']['id'],
-          :division_lat           => deal['division']['lat'],
-          :division_lng           => deal['division']['lng'],
-          :division_name          => deal['division']['name'],
-          :announcementTitle      => deal['announcementTitle'],
-          :highlightsHtml         => deal['highlightsHtml'],
-          :merchant_name          => deal['merchant']['name'],
-          :isSoldOut              => deal['isSoldOut'],
-          :dealUrl                => deal['dealUrl'],
-          :websiteUrl             => deal['websiteUrl'],
-          :title                  => deal['title'],
-          :shortAnnouncementTitle => deal['shortAnnouncementTitle'],
-          :finePrint              => deal['finePrint']
-        )
-
-        deal['options'].each do |option_hash|
           create_option(groupon, option_hash)
         end
+        rescue Exception => e
+          deal['options'].each do |option_hash|
+            option = DealOption.find_by_optionID(option_hash['id'])
+            option.update_attributes(
+              :isSoldOut                => option_hash['isSoldOut'],
+              :soldQuantity             => option_hash['soldQuantity'],
+              :soldQuantityMessage      => option_hash['soldQuantityMessage']
+            ) if option.present?
+          end
+        end
+
+
         #puts ("\"" + deal['highlightsHtml'] + "\" saved (" + index.to_s + ")").html_safe
 
       end
@@ -194,7 +188,8 @@ namespace :db do
       :soldQuantity             => option_hash['soldQuantity'],
       :soldQuantityMessage      => option_hash['soldQuantityMessage'],
       :title                    => option_hash['title'], 
-      :value_formattedAmount    => option_hash['value']['formattedAmount']
+      :value_formattedAmount    => option_hash['value']['formattedAmount'],
+      :optionID                 => option_hash['id']
     )
   end
 

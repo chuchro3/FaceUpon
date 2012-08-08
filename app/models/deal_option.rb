@@ -1,5 +1,5 @@
 class DealOption < ActiveRecord::Base
-  attr_accessible :buyUrl, :details_description, :discountPercent, :discount_formattedAmount, :expiresAt, :isSoldOut, :maximumPurchaseQuantity, :price_formattedAmount, :soldQuantity, :soldQuantityMessage, :title, :value_formattedAmount
+  attr_protected
 
   belongs_to :GrouponDeal
 end
