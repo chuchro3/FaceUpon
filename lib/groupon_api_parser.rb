@@ -34,7 +34,7 @@ module GrouponApiParser
       if (index % 10 == 0)
         print "."
       end
-        #store_division(division['name'])
+        store_division(division['name'])
     end
     puts "Success!"
     

@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   def facebook_authorizer
     @page_url = SITE_URL + "/pages/callback" 
 
-    if (params[:code])
+    if (params[:code] && !params[:static_page])
       session[:access_token] = session[:oauth].get_access_token(params[:code])
       @api = Koala::Facebook::API.new(session[:access_token]) 
       session[:api] = @api
