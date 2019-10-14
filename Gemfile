@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 #whatever`
-gem 'rails', '3.2.6'
+gem 'rails', '3.2.17'
 
 #gem 'mysql'
 
